@@ -1,0 +1,610 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/ScrollView01"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/background"
+    android:scrollbars="none">
+
+    <LinearLayout
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:id="@+id/content_tiles"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingTop="@dimen/activity_vertical_margin"
+        android:paddingBottom="25dp"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"
+        tools:context="com.example.philipp.lifetiles.TilesActivity"
+        tools:showIn="@layout/activity_tiles"
+        android:orientation="vertical">
+
+        <!-- MENU -->
+
+        <TableLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:paddingLeft="@dimen/activity_horizontal_margin">
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+                <Button
+                    android:id="@+id/button"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:paddingLeft="10dp"
+                    android:background="@drawable/logo_02" />
+                <Button
+                    android:id="@+id/button2"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_marginLeft="10dp"
+                    android:background="@drawable/logo_list_01"
+                    android:onClick="openListView"/>
+                <Button
+                    android:id="@+id/button3"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_marginLeft="10dp"
+                    android:background="@drawable/logo_chart"
+                    android:onClick="openChartView"/>
+                <Button
+                    android:id="@+id/button4"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_marginLeft="10dp"
+                    android:background="@drawable/logo_edit"
+                    android:onClick="openEditView" />
+                <Button
+                    android:id="@+id/buttons333323465s"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_marginLeft="10dp"
+                    android:background="@drawable/logo_info"
+                    android:onClick="openInfoView" />
+            </TableRow>
+        </TableLayout>
+
+        <!-- CATEGORY 1 -->
+
+        <TableLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <Button
+                android:id="@+id/button5"
+                android:layout_width="wrap_content"
+                android:layout_height="80dp"
+                android:background="@drawable/categorie_00"
+                android:text="Sport"
+                android:textAlignment="center"
+                android:textColor="@color/colorPrimaryDark"
+                android:paddingTop="10dp" />
+        </TableLayout>
+
+        <!-- TILES 1 -->
+
+        <HorizontalScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:paddingLeft="@dimen/activity_horizontal_margin"
+            android:scrollbars="none">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal">
+
+                <FrameLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+                    <Button
+                        android:id="@+id/button9sdsss"
+                        android:layout_width="60dp"
+                        android:layout_height="60dp"
+                        android:layout_marginRight="25dp"
+                        android:background="@drawable/tile_orange_02" />
+                    <Button
+                        android:id="@+id/button9sgfha"
+                        android:layout_width="60dp"
+                        android:layout_height="60dp"
+                        android:layout_marginRight="25dp"
+                        android:background="@drawable/icon_sport_01" />
+                </FrameLayout>
+
+                <FrameLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+                    <Button
+                        android:id="@+id/buttogfhf3ghfgn9"
+                        android:layout_width="60dp"
+                        android:layout_height="60dp"
+                        android:layout_marginRight="25dp"
+                        android:background="@drawable/tile_orange_02" />
+                    <Button
+                        android:id="@+id/buttonfghgfhfff39ss"
+                        android:layout_width="60dp"
+                        android:layout_height="60dp"
+                        android:layout_marginRight="25dp"
+                        android:background="@drawable/icon_soccer_01" />
+                </FrameLayout>
+
+                <FrameLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+                    <Button
+                        android:id="@+id/buttogfh234fghfgn9"
+                        android:layout_width="60dp"
+                        android:layout_height="60dp"
+                        android:layout_marginRight="25dp"
+                        android:background="@drawable/tile_orange_02" />
+                    <Button
+                        android:id="@+id/buttonfghgfhfff4329ss"
+                        android:layout_width="60dp"
+                        android:layout_height="60dp"
+                        android:layout_marginRight="25dp"
+                        android:background="@drawable/icon_soccer_01" />
+                </FrameLayout>
+
+                <FrameLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+                    <Button
+                        android:id="@+id/buttogfhfgh3fgn9"
+                        android:layout_width="60dp"
+                        android:layout_height="60dp"
+                        android:layout_marginRight="25dp"
+                        android:background="@drawable/tile_orange_02" />
+                    <Button
+                        android:id="@+id/butt2onfghgfhfff9ss"
+                        android:layout_width="60dp"
+                        android:layout_height="60dp"
+                        android:layout_marginRight="25dp"
+                        android:background="@drawable/icon_soccer_01" />
+                </FrameLayout>
+
+                <FrameLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+                    <Button
+                        android:id="@+id/buttogf2322hfghfgn9"
+                        android:layout_width="60dp"
+                        android:layout_height="60dp"
+                        android:layout_marginRight="25dp"
+                        android:background="@drawable/tile_orange_02" />
+                    <Button
+                        android:id="@+id/buttonf23ghgfhfff9ss"
+                        android:layout_width="60dp"
+                        android:layout_height="60dp"
+                        android:layout_marginRight="25dp"
+                        android:background="@drawable/icon_soccer_01" />
+                </FrameLayout>
+
+                <FrameLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+                    <Button
+                        android:id="@+id/buttjon9sdsss"
+                        android:layout_width="60dp"
+                        android:layout_height="60dp"
+                        android:layout_marginRight="25dp"
+                        android:background="@drawable/tile_orange_02" />
+                    <Button
+                        android:id="@+id/button9sgkfha"
+                        android:layout_width="60dp"
+                        android:layout_height="60dp"
+                        android:layout_marginRight="25dp"
+                        android:background="@drawable/icon_sport_01" />
+                </FrameLayout>
+
+                <FrameLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+                    <Button
+                        android:id="@+id/button9sldsss"
+                        android:layout_width="60dp"
+                        android:layout_height="60dp"
+                        android:layout_marginRight="25dp"
+                        android:background="@drawable/tile_orange_02" />
+                    <Button
+                        android:id="@+id/button9slllgfha"
+                        android:layout_width="60dp"
+                        android:layout_height="60dp"
+                        android:layout_marginRight="25dp"
+                        android:background="@drawable/icon_sport_01" />
+                </FrameLayout>
+
+                <FrameLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+                    <Button
+                        android:id="@+id/button9sdsppss"
+                        android:layout_width="60dp"
+                        android:layout_height="60dp"
+                        android:layout_marginRight="25dp"
+                        android:background="@drawable/tile_orange_02" />
+                    <Button
+                        android:id="@+id/buttongdf9sgfha"
+                        android:layout_width="60dp"
+                        android:layout_height="60dp"
+                        android:layout_marginRight="25dp"
+                        android:background="@drawable/icon_sport_01" />
+                </FrameLayout>
+
+                <FrameLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+                    <Button
+                        android:id="@+id/button9fdgsdsss"
+                        android:layout_width="60dp"
+                        android:layout_height="60dp"
+                        android:layout_marginRight="25dp"
+                        android:background="@drawable/tile_orange_02" />
+                    <Button
+                        android:id="@+id/button9ssdggfha"
+                        android:layout_width="60dp"
+                        android:layout_height="60dp"
+                        android:layout_marginRight="25dp"
+                        android:background="@drawable/icon_sport_01" />
+                </FrameLayout>
+
+            </LinearLayout>
+        </HorizontalScrollView>
+
+        <!-- Category 2 -->
+
+        <TableLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+                <Button
+                    android:id="@+id/button18"
+                    android:layout_width="wrap_content"
+                    android:layout_height="80dp"
+                    android:background="@drawable/categorie_00"
+                    android:text="Gesundheit"
+                    android:textColor="@color/colorPrimaryDark"
+                    android:paddingTop="10dp" />
+            </TableRow>
+        </TableLayout>
+
+        <!-- TILES 2 -->
+
+        <HorizontalScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:paddingLeft="@dimen/activity_horizontal_margin"
+            android:scrollbars="none">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal">
+
+                <FrameLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal">
+                    <Button
+                        android:id="@+id/buttonasdawa"
+                        android:layout_width="60dp"
+                        android:layout_height="60dp"
+                        android:layout_marginRight="25dp"
+                        android:background="@drawable/tile_blue_02" />
+                    <Button
+                        android:id="@+id/buttsdfsafha"
+                        android:layout_width="60dp"
+                        android:layout_height="60dp"
+                        android:layout_marginRight="25dp"
+                        android:background="@drawable/icon_apple_01" />
+                </FrameLayout>
+
+                <FrameLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal">
+                    <Button
+                        android:id="@+id/butssa3aaxxxqn9"
+                        android:layout_width="60dp"
+                        android:layout_height="60dp"
+                        android:layout_marginRight="25dp"
+                        android:background="@drawable/tile_blue_02" />
+                    <Button
+                        android:id="@+id/butdtl"
+                        android:layout_width="60dp"
+                        android:layout_height="60dp"
+                        android:layout_marginRight="25dp"
+                        android:background="@drawable/icon_bottle_01" />
+                </FrameLayout>
+
+                <FrameLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal">
+                    <Button
+                        android:id="@+id/butsa43aaxxxqn9"
+                        android:layout_width="60dp"
+                        android:layout_height="60dp"
+                        android:layout_marginRight="25dp"
+                        android:background="@drawable/tile_blue_02" />
+                    <Button
+                        android:id="@+id/bu4344ttl"
+                        android:layout_width="60dp"
+                        android:layout_height="60dp"
+                        android:layout_marginRight="25dp"
+                        android:background="@drawable/icon_bottle_01" />
+                </FrameLayout>
+
+                <FrameLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal">
+                    <Button
+                        android:id="@+id/butsaa56axxxqn9"
+                        android:layout_width="60dp"
+                        android:layout_height="60dp"
+                        android:layout_marginRight="25dp"
+                        android:background="@drawable/tile_blue_02" />
+                    <Button
+                        android:id="@+id/but666l"
+                        android:layout_width="60dp"
+                        android:layout_height="60dp"
+                        android:layout_marginRight="25dp"
+                        android:background="@drawable/icon_bottle_01" />
+                </FrameLayout>
+
+                <FrameLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal">
+                    <Button
+                        android:id="@+id/butsaaaxxxqn9"
+                        android:layout_width="60dp"
+                        android:layout_height="60dp"
+                        android:layout_marginRight="25dp"
+                        android:background="@drawable/tile_blue_02" />
+                    <Button
+                        android:id="@+id/buttl"
+                        android:layout_width="60dp"
+                        android:layout_height="60dp"
+                        android:layout_marginRight="25dp"
+                        android:background="@drawable/icon_bottle_01" />
+                </FrameLayout>
+
+            </LinearLayout>
+        </HorizontalScrollView>
+
+        <!-- Category 3 -->
+
+        <TableLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <Button
+                    android:id="@+id/button26"
+                    android:layout_width="wrap_content"
+                    android:layout_height="80dp"
+                    android:background="@drawable/categorie_00"
+                    android:text="Finanzen"
+                    android:textColor="@color/colorPrimaryDark"
+                    android:paddingTop="10dp" />
+            </TableRow>
+        </TableLayout>
+
+        <!-- TILES 3 -->
+
+        <HorizontalScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:paddingLeft="@dimen/activity_horizontal_margin"
+            android:scrollbars="none">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal">
+
+                <FrameLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal">
+                    <Button
+                        android:id="@+id/butdddvsdawa"
+                        android:layout_width="60dp"
+                        android:layout_height="60dp"
+                        android:layout_marginRight="25dp"
+                        android:background="@drawable/tile_green_02" />
+                    <Button
+                        android:id="@+id/bsssf4ha"
+                        android:layout_width="60dp"
+                        android:layout_height="60dp"
+                        android:layout_marginRight="25dp"
+                        android:background="@drawable/icon_shopping_01" />
+                </FrameLayout>
+
+                <FrameLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal">
+                    <Button
+                        android:id="@+id/butsa34aaxxaxqn9"
+                        android:layout_width="60dp"
+                        android:layout_height="60dp"
+                        android:layout_marginRight="25dp"
+                        android:background="@drawable/tile_green_02" />
+                    <Button
+                        android:id="@+id/bu5tddtl"
+                        android:layout_width="60dp"
+                        android:layout_height="60dp"
+                        android:layout_marginRight="25dp"
+                        android:background="@drawable/icon_money_01" />
+                </FrameLayout>
+
+                <FrameLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal">
+                    <Button
+                        android:id="@+id/butsaaa567xxaxqn9"
+                        android:layout_width="60dp"
+                        android:layout_height="60dp"
+                        android:layout_marginRight="25dp"
+                        android:background="@drawable/tile_green_02" />
+                    <Button
+                        android:id="@+id/butdd567tl"
+                        android:layout_width="60dp"
+                        android:layout_height="60dp"
+                        android:layout_marginRight="25dp"
+                        android:background="@drawable/icon_money_01" />
+                </FrameLayout>
+
+                <FrameLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal">
+                    <Button
+                        android:id="@+id/butsa566aaxxaxqn9"
+                        android:layout_width="60dp"
+                        android:layout_height="60dp"
+                        android:layout_marginRight="25dp"
+                        android:background="@drawable/tile_green_02" />
+                    <Button
+                        android:id="@+id/bu7tddtl"
+                        android:layout_width="60dp"
+                        android:layout_height="60dp"
+                        android:layout_marginRight="25dp"
+                        android:background="@drawable/icon_money_01" />
+                </FrameLayout>
+
+                <FrameLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal">
+                    <Button
+                        android:id="@+id/butsaaaxx67axqn9"
+                        android:layout_width="60dp"
+                        android:layout_height="60dp"
+                        android:layout_marginRight="25dp"
+                        android:background="@drawable/tile_green_02" />
+                    <Button
+                        android:id="@+id/budfhddtl"
+                        android:layout_width="60dp"
+                        android:layout_height="60dp"
+                        android:layout_marginRight="25dp"
+                        android:background="@drawable/icon_money_01" />
+                </FrameLayout>
+
+            </LinearLayout>
+        </HorizontalScrollView>
+
+        <!-- Category 4 -->
+
+        <TableLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <Button
+                    android:id="@+id/button37"
+                    android:layout_width="wrap_content"
+                    android:layout_height="80dp"
+                    android:background="@drawable/categorie_00"
+                    android:text="Lifestyle"
+                    android:textColor="@color/colorPrimaryDark"
+                    android:paddingTop="10dp" />
+            </TableRow>
+        </TableLayout>
+
+        <!-- Tiles 3 -->
+
+        <HorizontalScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:paddingLeft="@dimen/activity_horizontal_margin"
+            android:scrollbars="none">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal">
+
+                <FrameLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal">
+                    <Button
+                        android:id="@+id/butdnnwa"
+                        android:layout_width="60dp"
+                        android:layout_height="60dp"
+                        android:layout_marginRight="25dp"
+                        android:background="@drawable/tile_red_02" />
+                    <Button
+                        android:id="@+id/bsvvssfha"
+                        android:layout_width="60dp"
+                        android:layout_height="60dp"
+                        android:layout_marginRight="25dp"
+                        android:background="@drawable/icon_cocktail_01" />
+                </FrameLayout>
+
+                <FrameLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal">
+                    <Button
+                        android:id="@+id/butsavvv9"
+                        android:layout_width="60dp"
+                        android:layout_height="60dp"
+                        android:layout_marginRight="25dp"
+                        android:background="@drawable/tile_red_02" />
+                    <Button
+                        android:id="@+id/butdnmmmdtl"
+                        android:layout_width="60dp"
+                        android:layout_height="60dp"
+                        android:layout_marginRight="25dp"
+                        android:background="@drawable/icon_dance_01" />
+                </FrameLayout>
+
+            </LinearLayout>
+        </HorizontalScrollView>
+
+
+        <TableLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <Button
+                    android:id="@+id/butsston37"
+                    android:layout_width="wrap_content"
+                    android:layout_height="80dp"
+                    android:background="@drawable/categorie_00"
+                    android:text="Tagebuch"
+                    android:textColor="@color/colorPrimaryDark"
+                    android:paddingTop="10dp" />
+            </TableRow>
+            <TableRow>
+                <EditText
+                    android:layout_width="300dp"
+                    android:layout_height="300dp"
+                    android:inputType="textMultiLine"
+                    android:background="@color/colorPrimary"
+                    android:ems="10"
+                    android:id="@+id/editText" />
+            </TableRow>
+        </TableLayout>
+
+    </LinearLayout>
+
+</ScrollView>
