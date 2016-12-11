@@ -2,6 +2,8 @@ package com.example.philipp.lifetiles.components;
 
 import android.graphics.Color;
 
+import java.util.List;
+
 /**
  * Created by Philipp on 09.12.2016.
  */
@@ -9,11 +11,21 @@ public class Category {
 
     private int id;
     private String name;
-    public Color color;
+    private List<Tile> tiles;
+    private Color color;
 
-    public Category(int id, String name) {
+    public Category(int id, String name, List<Tile> tiles) {
         this.id = id;
         this.name = name;
+        this.tiles = tiles;
+    }
+
+    public List<Tile> getTiles() {
+        return tiles;
+    }
+
+    public void setTiles(List<Tile> tiles) {
+        this.tiles = tiles;
     }
 
     public Color getColor() {

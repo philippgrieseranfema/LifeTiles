@@ -1,7 +1,6 @@
 package com.example.philipp.lifetiles.views;
 
-import com.example.philipp.lifetiles.TilesActivity;
-import com.example.philipp.lifetiles.components.BooleanTile;
+import com.example.philipp.lifetiles.components.Tile;
 
 /**
  * Created by Philipp on 09.12.2016.
@@ -9,7 +8,7 @@ import com.example.philipp.lifetiles.components.BooleanTile;
 
 public class TilesView {
 
-    private BooleanTile[] buttons;
+    private Tile[] buttons;
 
     public TilesView(){
 

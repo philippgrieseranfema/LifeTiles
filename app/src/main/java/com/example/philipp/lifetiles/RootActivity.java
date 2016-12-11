@@ -3,9 +3,12 @@ package com.example.philipp.lifetiles;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v4.app.FragmentActivity;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 
-public class RootActivity extends Activity {
+public abstract class RootActivity extends FragmentActivity {
     int onStartCount = 0;
 
     @Override
@@ -59,5 +62,4 @@ public class RootActivity extends Activity {
         Intent intent = new Intent(this, InfoActivity.class);
         startActivity(intent);
     }
-
 }
