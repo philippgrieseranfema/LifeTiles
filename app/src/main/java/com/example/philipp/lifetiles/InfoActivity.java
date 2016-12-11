@@ -1,19 +1,19 @@
 package com.example.philipp.lifetiles;
 
-import android.app.Fragment;
-import android.content.Intent;
+import android.app.ActionBar;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
-import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.HorizontalScrollView;
 import android.widget.LinearLayout;
-import android.widget.TableRow;
+import android.widget.Toolbar;
 
 import com.example.philipp.lifetiles.Fixtures.InitTiles;
+import com.example.philipp.lifetiles.components.Category;
 import com.example.philipp.lifetiles.components.Tile;
-
-import java.util.List;
 
 public class InfoActivity extends RootActivity {
 
@@ -23,25 +23,66 @@ public class InfoActivity extends RootActivity {
         setContentView(R.layout.info_tiles);
 
         createMenu();
+        createCategories();
+    }
 
-        LinearLayout myLayout = (LinearLayout) findViewById(R.id.fuckingLayout);
+    private void createCategories() {
+        LinearLayout layout = (LinearLayout) findViewById(R.id.layoutInfo);
 
-        Button myButton = new Button(this);
-        myButton.setLayoutParams(new LinearLayout.LayoutParams(
-                LinearLayout.LayoutParams.MATCH_PARENT,
-                LinearLayout.LayoutParams.MATCH_PARENT));
-        myLayout.addView(myButton);
+        for(Category category : InitTiles.getCategories()){
+            // category
+            Button buttonCategory = new Button(this);
+            buttonCategory.setBackgroundResource(category.getIcon());
+            buttonCategory.setText(category.getName());
+            buttonCategory.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
+            buttonCategory.setPadding(0, 0, 0, 0);
+            layout.addView(buttonCategory);
+
+            // horizontal scroll layout
+            HorizontalScrollView layoutCategoryScroll = new HorizontalScrollView(this);
+            layoutCategoryScroll.setPadding(0, 0, 0, 0);
+            layout.addView(layoutCategoryScroll);
+
+            // horizontal layout
+            LinearLayout layoutCategoryTiles = new LinearLayout(this);
+            layoutCategoryTiles.setOrientation(LinearLayout.HORIZONTAL);
+            layoutCategoryTiles.setPadding(0, 0, 0, 0);
+            layoutCategoryScroll.addView(layoutCategoryTiles);
+
+            // category tiles
+            for(Tile tile : category.getTiles()){
+                Button buttonTile = new Button(this);
+                buttonTile.setBackgroundResource(tile.getIcon());
+                LinearLayout.LayoutParams paramsButton = new LinearLayout.LayoutParams(
+                        tile.getWidth(), tile.getHeight());
+                paramsButton.setMargins(10, 0, 10, 0);
+                buttonTile.setLayoutParams(paramsButton);
+                layoutCategoryTiles.addView(buttonTile);
+            }
+        }
     }
 
     private void createMenu() {
-        LinearLayout myLayout = (LinearLayout) findViewById(R.id.fuckingLayout);
+        LinearLayout layout = (LinearLayout) findViewById(R.id.layoutInfo);
 
+        // horizontal layout
+        LinearLayout layoutMenu = new LinearLayout(this);
+        layoutMenu.setOrientation(LinearLayout.HORIZONTAL);
+        ViewGroup.LayoutParams paramsMenu = new ViewGroup.LayoutParams(
+                ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
+        layoutMenu.setLayoutParams(paramsMenu);
+        layoutMenu.setPadding(14, 0, 0, 0);
+        layout.addView(layoutMenu);
+
+        // menu buttons
         for(Tile tile : InitTiles.getMenuTiles()){
             Button buttonTile = new Button(this);
-            buttonTile.setLayoutParams(
-                    new LinearLayout.LayoutParams(tile.getWidth(), tile.getHeight()));
             buttonTile.setBackgroundResource(tile.getIcon());
-            myLayout.addView(buttonTile);
+            LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(
+                    tile.getWidth(), tile.getHeight());
+            params.setMargins(10, 0, 10, 0);
+            buttonTile.setLayoutParams(params);
+            layoutMenu.addView(buttonTile);
         }
     }
 }

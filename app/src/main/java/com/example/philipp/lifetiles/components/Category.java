@@ -10,14 +10,24 @@ import java.util.List;
 public class Category {
 
     private int id;
+    private int icon;
     private String name;
     private List<Tile> tiles;
     private Color color;
 
-    public Category(int id, String name, List<Tile> tiles) {
+    public Category(int id, int icon, String name, List<Tile> tiles) {
         this.id = id;
+        this.icon = icon;
         this.name = name;
         this.tiles = tiles;
+    }
+
+    public int getIcon() {
+        return icon;
+    }
+
+    public void setIcon(int icon) {
+        this.icon = icon;
     }
 
     public List<Tile> getTiles() {

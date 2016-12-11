@@ -8,7 +8,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-public abstract class RootActivity extends FragmentActivity {
+public abstract class RootActivity extends Activity {
     int onStartCount = 0;
 
     @Override
