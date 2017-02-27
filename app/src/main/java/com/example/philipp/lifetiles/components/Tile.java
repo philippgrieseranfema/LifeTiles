@@ -1,9 +1,5 @@
 package com.example.philipp.lifetiles.components;
 
-import android.graphics.Color;
-
-import com.example.philipp.lifetiles.R;
-
 /**
  * Created by Philipp on 09.12.2016.
  */
@@ -15,6 +11,7 @@ public class Tile {
     private String name;
     private int width;
     private int height;
+    private TileState state;
 
     public Tile(int id, int icon, String name, int width, int height) {
         this.height = height;
@@ -22,6 +19,7 @@ public class Tile {
         this.name = name;
         this.icon = icon;
         this.id = id;
+        this.state = TileState.NOSTATE;
     }
 
     public String getName() {
@@ -64,4 +62,11 @@ public class Tile {
         this.height = height;
     }
 
+    public TileState getState() {
+        return state;
+    }
+
+    public void setState(TileState state) {
+        this.state = state;
+    }
 }

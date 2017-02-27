@@ -9,13 +9,15 @@ public class Category {
 
     private int id;
     private int icon;
+    private int pressedIcon;
     private String name;
     private List<Tile> tiles;
     private int color;
 
-    public Category(int id, int icon, String name, int color, List<Tile> tiles) {
+    public Category(int id, int icon, int pressedIcon, String name, int color, List<Tile> tiles) {
         this.id = id;
         this.icon = icon;
+        this.pressedIcon = pressedIcon;
         this.name = name;
         this.tiles = tiles;
         this.color = color;
@@ -61,4 +63,11 @@ public class Category {
         this.id = id;
     }
 
+    public int getPressedIcon() {
+        return pressedIcon;
+    }
+
+    public void setPressedIcon(int pressedIcon) {
+        this.pressedIcon = pressedIcon;
+    }
 }

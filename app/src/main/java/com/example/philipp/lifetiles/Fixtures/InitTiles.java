@@ -1,8 +1,8 @@
 package com.example.philipp.lifetiles.Fixtures;
 
 import com.example.philipp.lifetiles.R;
-import com.example.philipp.lifetiles.components.Tile;
 import com.example.philipp.lifetiles.components.Category;
+import com.example.philipp.lifetiles.components.Tile;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -18,7 +18,7 @@ public class InitTiles {
     private static int tileWidth = 100;
     private static int tileHeight = 100;
 
-    public static List<Tile> getMenuTiles(){
+    public static List<Tile> getMenuTiles() {
         List<Tile> tiles = new ArrayList<>();
         tiles.add(new Tile(0, R.drawable.logo_02, "logo", tileMenuWidth, tileMenuHeight));
         tiles.add(new Tile(1, R.drawable.logo_list_01, "list", tileMenuWidth, tileMenuHeight));
@@ -38,22 +38,22 @@ public class InitTiles {
     }
 
     private static Category getCategorySport() {
-        return new Category(0, R.drawable.categorie_00, "Sport",
+        return new Category(0, R.drawable.categorie_00, R.drawable.tile_yellow_pressed, "Sport",
                 R.drawable.tile_orange_02, getCategoryTilesSport());
     }
 
     private static Category getCategoryHealth() {
-        return new Category(1, R.drawable.categorie_00, "Health",
+        return new Category(1, R.drawable.categorie_00, R.drawable.tile_blue_pressed, "Health",
                 R.drawable.tile_blue_02, getCategoryTilesHealth());
     }
 
     private static Category getCategoryFinance() {
-        return new Category(2, R.drawable.categorie_00, "Finance",
+        return new Category(2, R.drawable.categorie_00, R.drawable.tile_green_pressed, "Finance",
                 R.drawable.tile_green_02, getCategoryTilesFinance());
     }
 
     private static Category getCategoryLifestyle() {
-        return new Category(3, R.drawable.categorie_00, "Lifestyle",
+        return new Category(3, R.drawable.categorie_00, R.drawable.tile_red_pressed, "Lifestyle",
                 R.drawable.tile_red_02, getCategoryTilesLifestyle());
     }
 
