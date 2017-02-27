@@ -1,7 +1,5 @@
 package com.example.philipp.lifetiles.components;
 
-import android.graphics.Color;
-
 import java.util.List;
 
 /**
@@ -13,13 +11,14 @@ public class Category {
     private int icon;
     private String name;
     private List<Tile> tiles;
-    private Color color;
+    private int color;
 
-    public Category(int id, int icon, String name, List<Tile> tiles) {
+    public Category(int id, int icon, String name, int color, List<Tile> tiles) {
         this.id = id;
         this.icon = icon;
         this.name = name;
         this.tiles = tiles;
+        this.color = color;
     }
 
     public int getIcon() {
@@ -38,11 +37,11 @@ public class Category {
         this.tiles = tiles;
     }
 
-    public Color getColor() {
+    public int getColor() {
         return color;
     }
 
-    public void setColor(Color color) {
+    public void setColor(int color) {
         this.color = color;
     }
 
