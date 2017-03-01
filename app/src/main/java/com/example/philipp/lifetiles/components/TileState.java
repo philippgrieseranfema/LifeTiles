@@ -5,5 +5,5 @@ package com.example.philipp.lifetiles.components;
  */
 
 public enum TileState {
-    NOSTATE, PRESSED
+    NOSTATE, PRESSED, PRESSED2, PRESSED3
 }

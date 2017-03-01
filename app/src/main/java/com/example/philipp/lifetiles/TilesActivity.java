@@ -63,6 +63,14 @@ public class TilesActivity extends RootActivity {
                         tile.getWidth(), tile.getHeight());
                 frameLayout.addView(buttonTile, paramsButton);
 
+                // pressed overlay sticks
+                final Button buttonSticks = new Button(this);
+                buttonSticks.setBackgroundResource(R.drawable.transparent);
+                LinearLayout.LayoutParams bbb = new LinearLayout.LayoutParams(
+                        tile.getWidth(), (int) (tile.getHeight() * 1.18)); // image scale
+                buttonSticks.setLayoutParams(bbb);
+                frameLayout.addView(buttonSticks);
+
                 // pressed overlay
                 final Button buttonPressed = new Button(this);
                 buttonPressed.setBackgroundResource(R.drawable.transparent);
@@ -80,9 +88,17 @@ public class TilesActivity extends RootActivity {
                         if (tile.getState() == TileState.NOSTATE) {
                             tile.setState(TileState.PRESSED);
                             buttonPressed.setBackgroundResource(category.getPressedIcon());
+                            buttonSticks.setBackgroundResource(R.drawable.tile_pressed_stick);
                         } else if (tile.getState() == TileState.PRESSED) {
+                            tile.setState(TileState.PRESSED2);
+                            buttonSticks.setBackgroundResource(R.drawable.tile_pressed_stick2);
+                        } else if (tile.getState() == TileState.PRESSED2) {
+                            tile.setState(TileState.PRESSED3);
+                            buttonSticks.setBackgroundResource(R.drawable.tile_pressed_stick3);
+                        } else if (tile.getState() == TileState.PRESSED3) {
                             tile.setState(TileState.NOSTATE);
                             buttonPressed.setBackgroundResource(R.drawable.transparent);
+                            buttonSticks.setBackgroundResource(R.drawable.transparent);
                         }
                     }
                 });
