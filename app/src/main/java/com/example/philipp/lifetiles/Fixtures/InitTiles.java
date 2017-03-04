@@ -1,8 +1,14 @@
 package com.example.philipp.lifetiles.Fixtures;
 
+import com.example.philipp.lifetiles.ChartActivity;
+import com.example.philipp.lifetiles.EditActivity;
+import com.example.philipp.lifetiles.InfoActivity;
+import com.example.philipp.lifetiles.ListActivity;
 import com.example.philipp.lifetiles.R;
+import com.example.philipp.lifetiles.TilesActivity;
 import com.example.philipp.lifetiles.components.Category;
 import com.example.philipp.lifetiles.components.Tile;
+import com.example.philipp.lifetiles.components.TileMenu;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -20,11 +26,11 @@ public class InitTiles {
 
     public static List<Tile> getMenuTiles() {
         List<Tile> tiles = new ArrayList<>();
-        tiles.add(new Tile(0, R.drawable.logo_02, "logo", tileMenuWidth, tileMenuHeight));
-        tiles.add(new Tile(1, R.drawable.logo_list_01, "list", tileMenuWidth, tileMenuHeight));
-        tiles.add(new Tile(0, R.drawable.logo_edit, "edit", tileMenuWidth, tileMenuHeight));
-        tiles.add(new Tile(1, R.drawable.logo_chart, "chart", tileMenuWidth, tileMenuHeight));
-        tiles.add(new Tile(0, R.drawable.logo_info, "info", tileMenuWidth, tileMenuHeight));
+        tiles.add(new TileMenu(0, R.drawable.logo_02, "logo", tileMenuWidth, tileMenuHeight, TilesActivity.class));
+        tiles.add(new TileMenu(1, R.drawable.logo_list_01, "list", tileMenuWidth, tileMenuHeight, ListActivity.class));
+        tiles.add(new TileMenu(2, R.drawable.logo_edit, "edit", tileMenuWidth, tileMenuHeight, ChartActivity.class));
+        tiles.add(new TileMenu(3, R.drawable.logo_chart, "chart", tileMenuWidth, tileMenuHeight, EditActivity.class));
+        tiles.add(new TileMenu(4, R.drawable.logo_info, "info", tileMenuWidth, tileMenuHeight, InfoActivity.class));
         return tiles;
     }
 

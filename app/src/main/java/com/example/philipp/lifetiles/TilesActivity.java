@@ -1,5 +1,6 @@
 package com.example.philipp.lifetiles;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
@@ -12,6 +13,7 @@ import android.widget.LinearLayout;
 import com.example.philipp.lifetiles.Fixtures.InitTiles;
 import com.example.philipp.lifetiles.components.Category;
 import com.example.philipp.lifetiles.components.Tile;
+import com.example.philipp.lifetiles.components.TileMenu;
 import com.example.philipp.lifetiles.components.TileState;
 
 public class TilesActivity extends RootActivity {
@@ -124,9 +126,16 @@ public class TilesActivity extends RootActivity {
         layout.addView(layoutMenu);
 
         // menu buttons
-        for (Tile tile : InitTiles.getMenuTiles()) {
+        for (final Tile tile : InitTiles.getMenuTiles()) {
             Button buttonTile = new Button(this);
             buttonTile.setBackgroundResource(tile.getIcon());
+            buttonTile.setOnClickListener(new View.OnClickListener() { // TODO extract
+                @Override
+                public void onClick(View v) {
+                    Intent intent = new Intent(TilesActivity.this, ((TileMenu) tile).getClassToSwitch());
+                    startActivity(intent);
+                }
+            });
             LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(
                     tile.getWidth(), tile.getHeight());
             params.setMargins(10, 0, 10, 0);
