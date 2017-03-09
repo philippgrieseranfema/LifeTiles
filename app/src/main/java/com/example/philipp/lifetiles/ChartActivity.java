@@ -1,30 +1,31 @@
 package com.example.philipp.lifetiles;
 
-import android.content.Intent;
 import android.os.Bundle;
-import android.os.Handler;
-import android.view.View;
-import android.view.View.OnClickListener;
-import android.view.ViewGroup;
-import android.widget.AdapterView;
-import android.widget.AdapterView.OnItemClickListener;
-import android.widget.Button;
-import android.widget.GridView;
-import android.widget.LinearLayout;
-import android.widget.TextView;
-
-import com.example.philipp.lifetiles.Fixtures.InitTiles;
-import com.example.philipp.lifetiles.components.Tile;
-import com.example.philipp.lifetiles.components.TileMenu;
-
-import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Random;
+import android.support.v7.widget.Toolbar;
+import android.view.Menu;
+import android.view.MenuInflater;
 
 
 public class ChartActivity extends RootActivity {
 
-    public Calendar month;
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.chart_tiles);
+        Toolbar myToolbar = (Toolbar) findViewById(R.id.toolbarChartActivity);
+        this.setSupportActionBar(myToolbar);
+        createMenu(ChartActivity.class);
+        //createCategories();
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.menu_tiles, menu);
+        return true;
+    }
+
+   /*  public Calendar month;
     public CalendarAdapter adapter;
     public Handler handler;
     public ArrayList<String> items; // container to store some random calendar items
@@ -45,12 +46,10 @@ public class ChartActivity extends RootActivity {
             adapter.setItems(items);
             adapter.notifyDataSetChanged();
         }
-    };
+    }; */
 
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.calendar);
-        createMenu();
+   /* public void onCreate(Bundle savedInstanceState) {
+
         month = Calendar.getInstance();
         onNewIntent(getIntent());
 
@@ -112,7 +111,7 @@ public class ChartActivity extends RootActivity {
                     intent.putExtra("date", android.text.format.DateFormat.format("yyyy-MM", month)+"-"+day);
                     setResult(RESULT_OK, intent);
                     finish();
-                }*/
+                }/
 
             }
         });
@@ -132,35 +131,5 @@ public class ChartActivity extends RootActivity {
         // TODO rem intent & get real date
         month.set(2017, 2, 3);
     }
-
-    private void createMenu() {
-        LinearLayout layout = (LinearLayout) findViewById(R.id.chart_tiles);
-
-        // horizontal layout
-        LinearLayout layoutMenu = new LinearLayout(this);
-        layoutMenu.setOrientation(LinearLayout.HORIZONTAL);
-        ViewGroup.LayoutParams paramsMenu = new ViewGroup.LayoutParams(
-                ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
-        layoutMenu.setLayoutParams(paramsMenu);
-        layoutMenu.setPadding(14, 0, 0, 0);
-        layout.addView(layoutMenu);
-
-        // menu buttons
-        for (final Tile tile : InitTiles.getMenuTiles()) {
-            Button buttonTile = new Button(this);
-            buttonTile.setBackgroundResource(tile.getIcon());
-            buttonTile.setOnClickListener(new View.OnClickListener() { // TODO extract
-                @Override
-                public void onClick(View v) {
-                    Intent intent = new Intent(ChartActivity.this, ((TileMenu) tile).getClassToSwitch());
-                    startActivity(intent);
-                }
-            });
-            LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(
-                    tile.getWidth(), tile.getHeight());
-            params.setMargins(10, 0, 10, 0);
-            buttonTile.setLayoutParams(params);
-            layoutMenu.addView(buttonTile);
-        }
-    }
+*/
 }

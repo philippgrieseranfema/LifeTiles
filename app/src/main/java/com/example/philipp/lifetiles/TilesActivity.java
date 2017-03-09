@@ -1,13 +1,11 @@
 package com.example.philipp.lifetiles;
 
-import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.HorizontalScrollView;
@@ -16,7 +14,6 @@ import android.widget.LinearLayout;
 import com.example.philipp.lifetiles.Fixtures.InitTiles;
 import com.example.philipp.lifetiles.components.Category;
 import com.example.philipp.lifetiles.components.Tile;
-import com.example.philipp.lifetiles.components.TileMenu;
 import com.example.philipp.lifetiles.components.TileState;
 
 public class TilesActivity extends RootActivity {
@@ -27,7 +24,7 @@ public class TilesActivity extends RootActivity {
         setContentView(R.layout.activity_tiles);
         Toolbar myToolbar = (Toolbar) findViewById(R.id.toolbarTilesActivity);
         this.setSupportActionBar(myToolbar);
-        createMenu();
+        createMenu(TilesActivity.class);
         createCategories();
     }
 
@@ -121,42 +118,6 @@ public class TilesActivity extends RootActivity {
                 buttonBorder.setLayoutParams(paramsBorder);
                 frameLayout.addView(buttonBorder);
             }
-        }
-    }
-
-    private void createMenu() {
-        LinearLayout layout = (LinearLayout) findViewById(R.id.theActivityTiles);
-
-        // horizontal layout
-        LinearLayout layoutMenu = new LinearLayout(this);
-        layoutMenu.setBackgroundColor(getResources().getColor(R.color.toolbarColor));
-        layoutMenu.setOrientation(LinearLayout.HORIZONTAL);
-        ViewGroup.LayoutParams paramsMenu = new ViewGroup.LayoutParams(
-                ViewGroup.LayoutParams.MATCH_PARENT, 100);
-        layoutMenu.setLayoutParams(paramsMenu);
-        layoutMenu.setPadding(0, 0, 0, 0);
-        layout.addView(layoutMenu);
-
-        // menu buttons
-        for (final TileMenu tile : InitTiles.getMenuTiles()) {
-            final Button buttonTile = new Button(this);
-            if (tile.getClassToSwitch().equals(TilesActivity.class)) {
-                buttonTile.setBackgroundResource(tile.getIconPressed());
-            } else {
-                buttonTile.setBackgroundResource(tile.getIcon());
-            }
-            buttonTile.setOnClickListener(new View.OnClickListener() { // TODO extract
-                @Override
-                public void onClick(View v) {
-                    Intent intent = new Intent(TilesActivity.this, (tile).getClassToSwitch());
-                    startActivity(intent);
-                }
-            });
-            LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(
-                    tile.getWidth(), tile.getHeight());
-            params.setMargins(32, 10, 10, 0);
-            buttonTile.setLayoutParams(params);
-            layoutMenu.addView(buttonTile);
         }
     }
 }
