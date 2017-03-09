@@ -1,161 +1,40 @@
 <?xml version="1.0" encoding="utf-8"?>
-
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/ScrollView01"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/listActivitLayout"
     android:layout_width="fill_parent"
     android:layout_height="wrap_content"
-    android:background="@drawable/background">
+    android:orientation="vertical">
 
-    <LinearLayout xmlns:app="http://schemas.android.com/apk/res-auto"
-        xmlns:tools="http://schemas.android.com/tools"
-        android:id="@+id/myLinearLayout"
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbarListActivity"
         android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="?attr/colorPrimary"
+        android:elevation="4dp"
+        android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
+        app:popupTheme="@style/ThemeOverlay.AppCompat.Light" />
+
+    <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/ScrollVidsd01"
+        android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:paddingBottom="25dp"
-        android:paddingTop="@dimen/activity_vertical_margin"
-        app:layout_behavior="@string/appbar_scrolling_view_behavior"
-        tools:context="com.example.philipp.lifetiles.TilesActivity"
-        tools:showIn="@layout/activity_tiles">
+        android:background="@drawable/background"
+        android:scrollbars="none">
 
-        <!-- MENU -->
-
-        <TableLayout
+        <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            xmlns:tools="http://schemas.android.com/tools"
+            android:id="@+id/theActivityList"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:paddingLeft="@dimen/activity_horizontal_margin">
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior"
+            tools:context="com.example.philipp.lifetiles.TilesActivity"
+            tools:showIn="@layout/activity_tiles">
 
-            <TableRow
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
+            <!-- dynamic content -->
 
-                <Button
-                    android:id="@+id/button"
-                    android:layout_width="30dp"
-                    android:layout_height="30dp"
-                    android:background="@drawable/logo_02"
-                    android:paddingLeft="10dp"
-                    android:onClick="openTilesView" />
-                <Button
-                    android:id="@+id/button2"
-                    android:layout_width="30dp"
-                    android:layout_height="30dp"
-                    android:layout_marginLeft="10dp"
-                    android:background="@drawable/logo_list_01" />
-                <Button
-                    android:id="@+id/button3"
-                    android:layout_width="30dp"
-                    android:layout_height="30dp"
-                    android:layout_marginLeft="10dp"
-                    android:background="@drawable/logo_chart"
-                    android:onClick="openChartView" />
-                <Button
-                    android:id="@+id/button4"
-                    android:layout_width="30dp"
-                    android:layout_height="30dp"
-                    android:layout_marginLeft="10dp"
-                    android:background="@drawable/logo_edit"
-                    android:onClick="openEditView" />
-                <Button
-                    android:id="@+id/button54545"
-                    android:layout_width="30dp"
-                    android:layout_height="30dp"
-                    android:layout_marginLeft="10dp"
-                    android:background="@drawable/logo_info"
-                    android:onClick="openInfoView" />
-
-            </TableRow>
-        </TableLayout>
-
-        <!-- CATEGORY 1 -->
-
-        <TableLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
-            <Button
-                android:id="@+id/button5"
-                android:layout_width="wrap_content"
-                android:layout_height="80dp"
-                android:background="@drawable/categorie_00"
-                android:paddingTop="10dp"
-                android:text="Sport"
-                android:textAlignment="center"
-                android:textColor="@color/colorPrimaryDark" />
-        </TableLayout>
-
-        <!-- TILES 1 -->
-
-        <HorizontalScrollView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:paddingLeft="@dimen/activity_horizontal_margin">
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="vertical">
-
-                <FrameLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent">
-
-                    <Button
-                        android:id="@+id/button9sdsss"
-                        android:layout_width="300dp"
-                        android:layout_height="60dp"
-                        android:layout_marginRight="25dp"
-                        android:background="@drawable/template_value" />
-
-                    <Button
-                        android:id="@+id/buttton9sgfha"
-                        android:layout_width="60dp"
-                        android:layout_height="60dp"
-                        android:layout_marginRight="25dp"
-                        android:background="@drawable/icon_sport_01" />
-                </FrameLayout>
-
-                <FrameLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_marginTop="25dp">
-
-                    <Button
-                        android:id="@+id/button9sdgggsss"
-                        android:layout_width="300dp"
-                        android:layout_height="60dp"
-                        android:layout_marginRight="25dp"
-                        android:background="@drawable/template_value" />
-
-                    <Button
-                        android:id="@+id/buttonh9sgfha"
-                        android:layout_width="60dp"
-                        android:layout_height="60dp"
-                        android:layout_marginRight="25dp"
-                        android:background="@drawable/icon_sport_01" />
-                </FrameLayout>
-
-                <FrameLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_marginTop="25dp">
-
-                    <Button
-                        android:id="@+id/butdfton9sdhsss"
-                        android:layout_width="300dp"
-                        android:layout_height="60dp"
-                        android:layout_marginRight="25dp"
-                        android:background="@drawable/template_value" />
-
-                    <Button
-                        android:id="@+id/butdfton9sgfha"
-                        android:layout_width="60dp"
-                        android:layout_height="60dp"
-                        android:layout_marginRight="25dp"
-                        android:background="@drawable/icon_sport_01" />
-                </FrameLayout>
-
-            </LinearLayout>
-        </HorizontalScrollView>
-    </LinearLayout>
-</ScrollView>
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>

@@ -5,14 +5,16 @@ package com.example.philipp.lifetiles.components;
  */
 
 public class TileMenu extends Tile {
+    private int iconPressed;
     private Class classToSwitch;
 
     public TileMenu(int id, int icon, String name, int width, int height) {
         super(id, icon, name, width, height);
     }
 
-    public TileMenu(int id, int icon, String name, int width, int height, Class classToSwitch) {
+    public TileMenu(int id, int icon, int iconPressed, String name, int width, int height, Class classToSwitch) {
         super(id, icon, name, width, height);
+        this.iconPressed = iconPressed;
         this.classToSwitch = classToSwitch;
     }
 
@@ -22,5 +24,13 @@ public class TileMenu extends Tile {
 
     public void setClassToSwitch(Class classToSwitch) {
         this.classToSwitch = classToSwitch;
+    }
+
+    public int getIconPressed() {
+        return iconPressed;
+    }
+
+    public void setIconPressed(int iconPressed) {
+        this.iconPressed = iconPressed;
     }
 }

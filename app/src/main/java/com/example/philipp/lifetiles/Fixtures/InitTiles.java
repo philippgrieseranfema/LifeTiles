@@ -24,13 +24,13 @@ public class InitTiles {
     private static int tileWidth = 100;
     private static int tileHeight = 100;
 
-    public static List<Tile> getMenuTiles() {
-        List<Tile> tiles = new ArrayList<>();
-        tiles.add(new TileMenu(0, R.drawable.logo_02, "logo", tileMenuWidth, tileMenuHeight, TilesActivity.class));
-        tiles.add(new TileMenu(1, R.drawable.logo_list_01, "list", tileMenuWidth, tileMenuHeight, ListActivity.class));
-        tiles.add(new TileMenu(2, R.drawable.logo_edit, "edit", tileMenuWidth, tileMenuHeight, ChartActivity.class));
-        tiles.add(new TileMenu(3, R.drawable.logo_chart, "chart", tileMenuWidth, tileMenuHeight, EditActivity.class));
-        tiles.add(new TileMenu(4, R.drawable.logo_info, "info", tileMenuWidth, tileMenuHeight, InfoActivity.class));
+    public static List<TileMenu> getMenuTiles() {
+        List<TileMenu> tiles = new ArrayList<>();
+        tiles.add(new TileMenu(0, R.drawable.logo_small, R.drawable.logo_small_pressed, "logo", tileMenuWidth, tileMenuHeight, TilesActivity.class));
+        tiles.add(new TileMenu(1, R.drawable.logo_list_small, R.drawable.logo_list_small_pressed, "list", tileMenuWidth, tileMenuHeight, ListActivity.class));
+        tiles.add(new TileMenu(2, R.drawable.logo_edit_small, R.drawable.logo_edit_small_pressed, "edit", tileMenuWidth, tileMenuHeight, ChartActivity.class));
+        tiles.add(new TileMenu(3, R.drawable.logo_chart_small, R.drawable.logo_chart_small_pressed, "chart", tileMenuWidth, tileMenuHeight, EditActivity.class));
+        tiles.add(new TileMenu(4, R.drawable.logo_info_small, R.drawable.logo_info_small_pressed, "info", tileMenuWidth, tileMenuHeight, InfoActivity.class));
         return tiles;
     }
 
@@ -39,6 +39,7 @@ public class InitTiles {
         categories.add(getCategorySport());
         categories.add(getCategoryHealth());
         categories.add(getCategoryFinance());
+        categories.add(getCategoryLifestyle());
         categories.add(getCategoryLifestyle());
         return categories;
     }
