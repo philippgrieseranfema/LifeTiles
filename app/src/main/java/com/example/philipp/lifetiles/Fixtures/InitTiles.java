@@ -66,40 +66,40 @@ public class InitTiles {
 
     private static List<Tile> getCategoryTilesSport() {
         List<Tile> tiles = new ArrayList<>();
-        tiles.add(new Tile(0, R.drawable.icon_sport_01, "sport", tileWidth, tileHeight));
-        tiles.add(new Tile(1, R.drawable.icon_badminton_01, "badminton", tileWidth, tileHeight));
-        tiles.add(new Tile(2, R.drawable.icon_barbell_01, "barbell", tileWidth, tileHeight));
-        tiles.add(new Tile(3, R.drawable.icon_soccer_01, "soccer", tileWidth, tileHeight));
-        tiles.add(new Tile(4, R.drawable.icon_bike_01, "bike", tileWidth, tileHeight));
-        tiles.add(new Tile(5, R.drawable.icon_soccer_01, "soccer", tileWidth, tileHeight));
+        tiles.add(new Tile(0, R.drawable.icon_sport_01, "sport", "Your sports activity", tileWidth, tileHeight));
+        tiles.add(new Tile(1, R.drawable.icon_badminton_01, "badminton", "Badminton match", tileWidth, tileHeight));
+        tiles.add(new Tile(2, R.drawable.icon_barbell_01, "barbell", "Fitness Club", tileWidth, tileHeight));
+        tiles.add(new Tile(3, R.drawable.icon_soccer_01, "soccer", "You played soccer today", tileWidth, tileHeight));
+        tiles.add(new Tile(4, R.drawable.icon_bike_01, "bike", "This is a description", tileWidth, tileHeight));
+        tiles.add(new Tile(5, R.drawable.icon_soccer_01, "soccer", "This is a description", tileWidth, tileHeight));
         return tiles;
     }
 
     private static List<Tile> getCategoryTilesHealth() {
         List<Tile> tiles = new ArrayList<>();
-        tiles.add(new Tile(0, R.drawable.icon_apple_01, "apple", tileWidth, tileHeight));
-        tiles.add(new Tile(1, R.drawable.icon_bottle_01, "bottle", tileWidth, tileHeight));
-        tiles.add(new Tile(1, R.drawable.icon_pill_01, "pill", tileWidth, tileHeight));
-        tiles.add(new Tile(0, R.drawable.icon_plus_01, "plus", tileWidth, tileHeight));
-        tiles.add(new Tile(1, R.drawable.icon_burger_01, "burger", tileWidth, tileHeight));
+        tiles.add(new Tile(0, R.drawable.icon_apple_01, "apple", "This is a description", tileWidth, tileHeight));
+        tiles.add(new Tile(1, R.drawable.icon_bottle_01, "bottle", "This is a description", tileWidth, tileHeight));
+        tiles.add(new Tile(1, R.drawable.icon_pill_01, "pill", "This is a description", tileWidth, tileHeight));
+        tiles.add(new Tile(0, R.drawable.icon_plus_01, "plus", "This is a description", tileWidth, tileHeight));
+        tiles.add(new Tile(1, R.drawable.icon_burger_01, "burger", "This is a description", tileWidth, tileHeight));
         return tiles;
     }
 
     private static List<Tile> getCategoryTilesFinance() {
         List<Tile> tiles = new ArrayList<>();
-        tiles.add(new Tile(0, R.drawable.icon_money_01, "money", tileWidth, tileHeight));
-        tiles.add(new Tile(1, R.drawable.icon_shopping_01, "shopping", tileWidth, tileHeight));
-        tiles.add(new Tile(2, R.drawable.icon_pig_01, "pig", tileWidth, tileHeight));
+        tiles.add(new Tile(0, R.drawable.icon_money_01, "money", "This is a description", tileWidth, tileHeight));
+        tiles.add(new Tile(1, R.drawable.icon_shopping_01, "shopping", "This is a description", tileWidth, tileHeight));
+        tiles.add(new Tile(2, R.drawable.icon_pig_01, "pig", "This is a description", tileWidth, tileHeight));
         return tiles;
     }
 
     private static List<Tile> getCategoryTilesLifestyle() {
         List<Tile> tiles = new ArrayList<>();
-        tiles.add(new Tile(0, R.drawable.icon_phone_01, "friends", tileWidth, tileHeight));
-        tiles.add(new Tile(1, R.drawable.icon_cocktail_01, "cocktail", tileWidth, tileHeight));
-        tiles.add(new Tile(2, R.drawable.icon_dance_01, "dance", tileWidth, tileHeight));
-        tiles.add(new Tile(3, R.drawable.icon_book_02, "book", tileWidth, tileHeight));
-        tiles.add(new Tile(4, R.drawable.icon_controller_01, "controller", tileWidth, tileHeight));
+        tiles.add(new Tile(0, R.drawable.icon_phone_01, "friends", "This is a description", tileWidth, tileHeight));
+        tiles.add(new Tile(1, R.drawable.icon_cocktail_01, "cocktail", "This is a description", tileWidth, tileHeight));
+        tiles.add(new Tile(2, R.drawable.icon_dance_01, "dance", "This is a description", tileWidth, tileHeight));
+        tiles.add(new Tile(3, R.drawable.icon_book_02, "book", "This is a description", tileWidth, tileHeight));
+        tiles.add(new Tile(4, R.drawable.icon_controller_01, "controller", "This is a description", tileWidth, tileHeight));
         return tiles;
     }
 }

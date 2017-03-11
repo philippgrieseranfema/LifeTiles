@@ -9,11 +9,11 @@ public class TileMenu extends Tile {
     private Class classToSwitch;
 
     public TileMenu(int id, int icon, String name, int width, int height) {
-        super(id, icon, name, width, height);
+        super(id, icon, name, "MenuTile", width, height);
     }
 
     public TileMenu(int id, int icon, int iconPressed, String name, int width, int height, Class classToSwitch) {
-        super(id, icon, name, width, height);
+        super(id, icon, name, "MenuTile", width, height);
         this.iconPressed = iconPressed;
         this.classToSwitch = classToSwitch;
     }

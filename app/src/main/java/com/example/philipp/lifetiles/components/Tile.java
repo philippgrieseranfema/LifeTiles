@@ -6,6 +6,7 @@ package com.example.philipp.lifetiles.components;
 
 public class Tile {
 
+    private String description;
     private int id;
     private int icon;
     private String name;
@@ -13,10 +14,11 @@ public class Tile {
     private int height;
     private TileState state;
 
-    public Tile(int id, int icon, String name, int width, int height) {
+    public Tile(int id, int icon, String name, String description, int width, int height) {
         this.height = height;
         this.width = width;
         this.name = name;
+        this.description = description;
         this.icon = icon;
         this.id = id;
         this.state = TileState.NOSTATE;
@@ -68,5 +70,13 @@ public class Tile {
 
     public void setState(TileState state) {
         this.state = state;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 }
