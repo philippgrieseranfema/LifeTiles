@@ -5,20 +5,18 @@ import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuInflater;
+import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import com.google.android.gms.appindexing.AppIndex;
-import com.google.android.gms.common.api.GoogleApiClient;
+import com.example.philipp.lifetiles.Fixtures.InitTiles;
+import com.example.philipp.lifetiles.components.Category;
+import com.example.philipp.lifetiles.components.Tile;
 
 public class EditActivity extends RootActivity {
-
-    /**
-     * ATTENTION: This was auto-generated to implement the App Indexing API.
-     * See https://g.co/AppIndexing/AndroidStudio for more information.
-     */
-    private GoogleApiClient client;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,9 +26,6 @@ public class EditActivity extends RootActivity {
         this.setSupportActionBar(myToolbar);
         createMenu(EditActivity.class);
         createCategories();
-        // ATTENTION: This was auto-generated to implement the App Indexing API.
-        // See https://g.co/AppIndexing/AndroidStudio for more information.
-        client = new GoogleApiClient.Builder(this).addApi(AppIndex.API).build();
     }
 
     @Override
@@ -40,24 +35,83 @@ public class EditActivity extends RootActivity {
         return true;
     }
 
-
     private void createCategories() {
         LinearLayout layout = (LinearLayout) findViewById(R.id.theActivityEdit);
+        createPreview(layout);
+        createChooseCategory(layout);
+        createNameDescription(layout);
+        createGetIcon(layout);
+        createSelectType(layout);
+    }
 
-        LinearLayout layoutTiles = new LinearLayout(this);
-        //layoutTiles.setOrientation(LinearLayout.HORIZONTAL);
-        layoutTiles.setPadding(0, 0, 0, 0);
-        layoutTiles.setBackgroundColor(Color.BLUE);
-        layout.addView(layoutTiles);
+    private void createGetIcon(LinearLayout layout) {
+        createHeadline(layout, "Icon");
+    }
 
-        Button testButton = new Button(this);
-        testButton.setBackgroundResource(R.drawable.icon_sport_01);
-        layoutTiles.addView(testButton);
+    private void createSelectType(LinearLayout layout) {
+        createHeadline(layout, "Type");
+    }
 
-        TextView textView = new TextView(this);
-        textView.setText("Das ist ein Test");
-        layoutTiles.addView(textView);
+    private void createChooseCategory(LinearLayout layout) {
+        createHeadline(layout, "Category");
 
+        for (Category category : InitTiles.getCategories()) {
+            TextView textViewCategoryName = new TextView(this);
+            textViewCategoryName.setText(category.getName());
+            layout.addView(textViewCategoryName);
+        }
+    }
 
+    private void createNameDescription(LinearLayout layout) {
+        createHeadline(layout, "Description");
+
+        EditText textViewName = new EditText(this);
+        textViewName.setText("Title");
+        textViewName.setPadding(0, 0, 0, 0);
+        layout.addView(textViewName);
+
+        EditText textViewDescription = new EditText(this);
+        textViewDescription.setText("Description");
+        textViewDescription.setPadding(0, 0, 0, 0);
+        layout.addView(textViewDescription);
+    }
+
+    private void createPreview(LinearLayout layout) {
+        createHeadline(layout, "Preview");
+
+        RelativeLayout relativeLayout = new RelativeLayout(this);
+
+        LinearLayout linearLayout = new LinearLayout(this);
+        Tile newTile = InitTiles.getNewTileCategory().getTiles().get(0);
+        Button buttonNew = new Button(this);
+        buttonNew.setBackgroundResource(R.drawable.tile_white);
+        LinearLayout.LayoutParams paramsButton = new LinearLayout.LayoutParams(
+                newTile.getWidth(), newTile.getHeight());
+        buttonNew.setPadding(20,0,0,20);
+        linearLayout.addView(buttonNew, paramsButton);
+        relativeLayout.addView(linearLayout);
+
+        TextView textViewName = new TextView(this);
+        textViewName.setText(newTile.getName());
+        textViewName.setPadding(140, 5, 0, 0);
+        relativeLayout.addView(textViewName);
+
+        TextView textViewDescription = new TextView(this);
+        textViewDescription.setText(newTile.getDescription());
+        textViewDescription.setPadding(140, 45, 0, 0);
+        relativeLayout.addView(textViewDescription);
+
+        layout.addView(relativeLayout);
+    }
+
+    private void createHeadline(LinearLayout layout, String title) {
+        Button headline = new Button(this);
+        headline.setBackgroundResource(R.drawable.categorie_00);
+        headline.setText(title);
+        headline.setTextColor(Color.DKGRAY);
+        headline.setTextSize(14);
+        headline.setPadding(0, 0, 0, 40);
+        headline.setTextAlignment(View.TEXT_ALIGNMENT_GRAVITY);
+        layout.addView(headline);
     }
 }

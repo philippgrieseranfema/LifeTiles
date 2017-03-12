@@ -103,4 +103,11 @@ public class InitTiles {
         tiles.add(new Tile(4, R.drawable.icon_controller_01, "controller", "This is a description", tileWidth, tileHeight));
         return tiles;
     }
+
+    public static Category getNewTileCategory(){
+        List<Tile> tiles = new ArrayList<>();
+        tiles.add(new Tile(0, R.drawable.icon_phone_01, "New Tile", "New Tile Description", tileWidth, tileHeight));
+        return new Category(0, R.drawable.categorie_00, R.drawable.tile_yellow_pressed, "Create new tiles here",
+                R.drawable.tile_white, tiles);
+    }
 }
