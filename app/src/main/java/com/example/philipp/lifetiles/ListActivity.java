@@ -55,24 +55,48 @@ public class ListActivity extends RootActivity {
                 layoutTiles.setPadding(0, 0, 0, 20);
                 layout.addView(layoutTiles);
 
-                Button testButton = new Button(this);
-                testButton.setBackgroundResource(tile.getIcon());
+                LinearLayout linearLayoutTileButton = new LinearLayout(this);
+                Button tileButton = new Button(this);
+                tileButton.setBackgroundResource(tile.getIcon());
                 LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(
                         tile.getWidth(), tile.getHeight()); // image scale
-                testButton.setLayoutParams(params);
-                testButton.setPadding(200, 0, 0, 0);
-                layoutTiles.addView(testButton);
+                tileButton.setLayoutParams(params);
+                linearLayoutTileButton.addView(tileButton);
+                linearLayoutTileButton.setPadding(20,00,0,0);
+                layoutTiles.addView(linearLayoutTileButton);
 
                 TextView textView = new TextView(this);
                 textView.setText(toUpperCase(tile.getName()));
-                textView.setPadding(150, 5, 0, 0);
+                textView.setPadding(140, 5, 0, 0);
                 textView.setTypeface(null, Typeface.BOLD);
                 layoutTiles.addView(textView);
 
                 TextView textView2 = new TextView(this);
                 textView2.setText(toUpperCase(tile.getDescription()));
-                textView2.setPadding(150, 45, 0, 0);
+                textView2.setPadding(140, 45, 0, 0);
                 layoutTiles.addView(textView2);
+
+                LinearLayout linearLayoutEditButton = new LinearLayout(this);
+                Button buttonEdit = new Button(this);
+                buttonEdit.setBackgroundResource(R.drawable.edit);
+                LinearLayout.LayoutParams buttonEditParams = new LinearLayout.LayoutParams(
+                        40, 40); // image scale
+                buttonEdit.setLayoutParams(buttonEditParams);
+                //buttonEdit.setTextAlignment(View.TEXT_ALIGNMENT_GRAVITY);
+                linearLayoutEditButton.addView(buttonEdit);
+                linearLayoutEditButton.setPadding(560,20,0,0);
+                layoutTiles.addView(linearLayoutEditButton);
+
+                LinearLayout linearLayoutDeleteButton = new LinearLayout(this);
+                Button buttonDelete = new Button(this);
+                buttonDelete.setBackgroundResource(R.drawable.delete);
+                LinearLayout.LayoutParams buttonDeleteParams = new LinearLayout.LayoutParams(
+                        40, 40); // image scale
+                buttonDelete.setLayoutParams(buttonDeleteParams);
+                //buttonDelete.setTextAlignment(View.TEXT_ALIGNMENT_GRAVITY);
+                linearLayoutDeleteButton.addView(buttonDelete);
+                linearLayoutDeleteButton.setPadding(640,20,0,0);
+                layoutTiles.addView(linearLayoutDeleteButton);
             }
         }
 

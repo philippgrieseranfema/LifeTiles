@@ -95,10 +95,11 @@ public class InitTiles {
 
     private static List<Tile> getCategoryTilesLifestyle() {
         List<Tile> tiles = new ArrayList<>();
-        tiles.add(new Tile(0, R.drawable.icon_phone_01, "friends", "This is a description", tileWidth, tileHeight));
+        tiles.add(new Tile(0, R.drawable.icon_phone_01, "phone", "So much phone this is", tileWidth, tileHeight));
         tiles.add(new Tile(1, R.drawable.icon_cocktail_01, "cocktail", "This is a description", tileWidth, tileHeight));
         tiles.add(new Tile(2, R.drawable.icon_dance_01, "dance", "This is a description", tileWidth, tileHeight));
         tiles.add(new Tile(3, R.drawable.icon_book_02, "book", "This is a description", tileWidth, tileHeight));
+        tiles.add(new Tile(3, R.drawable.icon_friends_01, "friends", "Go out with your friends", tileWidth, tileHeight));
         tiles.add(new Tile(4, R.drawable.icon_controller_01, "controller", "This is a description", tileWidth, tileHeight));
         return tiles;
     }
