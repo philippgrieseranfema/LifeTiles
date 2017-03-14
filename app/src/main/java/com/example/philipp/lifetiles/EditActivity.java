@@ -8,6 +8,8 @@ import android.view.MenuInflater;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.FrameLayout;
+import android.widget.HorizontalScrollView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -15,6 +17,7 @@ import android.widget.TextView;
 import com.example.philipp.lifetiles.Fixtures.InitTiles;
 import com.example.philipp.lifetiles.components.Category;
 import com.example.philipp.lifetiles.components.Tile;
+import com.example.philipp.lifetiles.components.TileState;
 
 public class EditActivity extends RootActivity {
 
@@ -46,6 +49,32 @@ public class EditActivity extends RootActivity {
 
     private void createGetIcon(LinearLayout layout) {
         createHeadline(layout, "Icon");
+
+        // horizontal scroll layout
+        HorizontalScrollView layoutCategoryScroll = new HorizontalScrollView(this);
+        layout.addView(layoutCategoryScroll);
+
+        // horizontal layout
+        LinearLayout layoutCategoryTiles = new LinearLayout(this);
+        layoutCategoryTiles.setOrientation(LinearLayout.HORIZONTAL);
+        layoutCategoryTiles.setPadding(15, 0, 0, 0);
+        layoutCategoryScroll.addView(layoutCategoryTiles);
+
+        // category tiles
+        for (final Tile tile : InitTiles.getAllIconTiles()) {
+
+            FrameLayout frameLayout = new FrameLayout(this);
+            frameLayout.setPadding(15, 0, 15, 15);
+            layoutCategoryTiles.addView(frameLayout);
+
+            // icon
+            final Button buttonTile = new Button(this);
+            buttonTile.setBackgroundResource(tile.getIcon());
+            LinearLayout.LayoutParams paramsButton = new LinearLayout.LayoutParams(
+                    tile.getWidth(), tile.getHeight());
+            frameLayout.addView(buttonTile, paramsButton);
+
+        }
     }
 
     private void createSelectType(LinearLayout layout) {

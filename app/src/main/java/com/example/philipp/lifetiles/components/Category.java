@@ -1,5 +1,7 @@
 package com.example.philipp.lifetiles.components;
 
+import com.example.philipp.lifetiles.R;
+
 import java.util.List;
 
 /**
@@ -9,18 +11,34 @@ public class Category {
 
     private int id;
     private int icon;
-    private int pressedIcon;
+    private int iconPressed;
+    private int iconCategory;
     private String name;
     private List<Tile> tiles;
-    private int color;
+    private CategoryColor color;
 
-    public Category(int id, int icon, int pressedIcon, String name, int color, List<Tile> tiles) {
+    public Category(int id, String name, CategoryColor color, List<Tile> tiles) {
         this.id = id;
-        this.icon = icon;
-        this.pressedIcon = pressedIcon;
         this.name = name;
         this.tiles = tiles;
         this.color = color;
+        if (color == CategoryColor.CATEGORY_COLOR_YELLOW) {
+            this.icon = R.drawable.tile_orange_02;
+            this.iconPressed = R.drawable.tile_yellow_pressed;
+            this.iconCategory = R.drawable.category_stripe_yellow;
+        } else if (color == CategoryColor.CATEGORY_COLOR_BLUE) {
+            this.icon = R.drawable.tile_blue_02;
+            this.iconPressed = R.drawable.tile_blue_pressed;
+            this.iconCategory = R.drawable.category_stripe_blue;
+        } else if (color == CategoryColor.CATEGORY_COLOR_GREEN) {
+            this.icon = R.drawable.tile_green_02;
+            this.iconPressed = R.drawable.tile_green_pressed;
+            this.iconCategory = R.drawable.category_stripe_green;
+        } else if (color == CategoryColor.CATEGORY_COLOR_RED) {
+            this.icon = R.drawable.tile_red_02;
+            this.iconPressed = R.drawable.tile_red_pressed;
+            this.iconCategory = R.drawable.category_stripe_red;
+        }
     }
 
     public int getIcon() {
@@ -39,11 +57,11 @@ public class Category {
         this.tiles = tiles;
     }
 
-    public int getColor() {
+    public CategoryColor getColor() {
         return color;
     }
 
-    public void setColor(int color) {
+    public void setColor(CategoryColor color) {
         this.color = color;
     }
 
@@ -63,11 +81,19 @@ public class Category {
         this.id = id;
     }
 
-    public int getPressedIcon() {
-        return pressedIcon;
+    public int getIconPressed() {
+        return iconPressed;
     }
 
-    public void setPressedIcon(int pressedIcon) {
-        this.pressedIcon = pressedIcon;
+    public void setIconPressed(int iconPressed) {
+        this.iconPressed = iconPressed;
+    }
+
+    public int getIconCategory() {
+        return iconCategory;
+    }
+
+    public void setIconCategory(int iconCategory) {
+        this.iconCategory = iconCategory;
     }
 }

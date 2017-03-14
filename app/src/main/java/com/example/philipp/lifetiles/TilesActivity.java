@@ -6,6 +6,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.HorizontalScrollView;
@@ -41,22 +42,33 @@ public class TilesActivity extends RootActivity {
         for (final Category category : InitTiles.getCategories()) {
             // category
             Button buttonCategory = new Button(this);
-            buttonCategory.setBackgroundResource(category.getIcon());
+            buttonCategory.setBackgroundResource(R.drawable.category);
+            LinearLayout.LayoutParams paramsCategory = new LinearLayout.LayoutParams(
+                    ViewGroup.LayoutParams.MATCH_PARENT, 70); // image scale
+            buttonCategory.setLayoutParams(paramsCategory);
             buttonCategory.setText(category.getName());
             buttonCategory.setTextColor(Color.DKGRAY);
             buttonCategory.setTextSize(14);
-            buttonCategory.setPadding(0, 0, 0, 40);
-            buttonCategory.setTextAlignment(View.TEXT_ALIGNMENT_GRAVITY);
+            buttonCategory.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
             layout.addView(buttonCategory);
+
+            // category stripe
+            Button buttonCategoryStripe = new Button(this);
+            buttonCategoryStripe.setBackgroundResource(category.getIconCategory());
+            LinearLayout.LayoutParams paramsCategoryStripe = new LinearLayout.LayoutParams(
+                    ViewGroup.LayoutParams.MATCH_PARENT, 8); // image scale
+            buttonCategoryStripe.setLayoutParams(paramsCategoryStripe);
+            layout.addView(buttonCategoryStripe);
 
             // horizontal scroll layout
             HorizontalScrollView layoutCategoryScroll = new HorizontalScrollView(this);
+            layoutCategoryScroll.setPadding(0, 15, 0, 0);
             layout.addView(layoutCategoryScroll);
 
             // horizontal layout
             LinearLayout layoutCategoryTiles = new LinearLayout(this);
             layoutCategoryTiles.setOrientation(LinearLayout.HORIZONTAL);
-            layoutCategoryTiles.setPadding(15, 0, 0, 0);
+            layoutCategoryTiles.setPadding(0, 15, 0, 0);
             layoutCategoryScroll.addView(layoutCategoryTiles);
 
             // category tiles
@@ -65,13 +77,6 @@ public class TilesActivity extends RootActivity {
                 FrameLayout frameLayout = new FrameLayout(this);
                 frameLayout.setPadding(15, 0, 15, 15);
                 layoutCategoryTiles.addView(frameLayout);
-
-                // icon
-                final Button buttonTile = new Button(this);
-                buttonTile.setBackgroundResource(tile.getIcon());
-                LinearLayout.LayoutParams paramsButton = new LinearLayout.LayoutParams(
-                        tile.getWidth(), tile.getHeight());
-                frameLayout.addView(buttonTile, paramsButton);
 
                 // pressed overlay sticks
                 final Button buttonSticks = new Button(this);
@@ -89,6 +94,13 @@ public class TilesActivity extends RootActivity {
                 buttonPressed.setLayoutParams(aaa);
                 frameLayout.addView(buttonPressed);
 
+                // icon
+                final Button buttonTile = new Button(this);
+                buttonTile.setBackgroundResource(tile.getIcon());
+                LinearLayout.LayoutParams paramsButton = new LinearLayout.LayoutParams(
+                        tile.getWidth(), tile.getHeight());
+                frameLayout.addView(buttonTile, paramsButton);
+
 
                 // border
                 Button buttonBorder = new Button(this);
@@ -97,7 +109,7 @@ public class TilesActivity extends RootActivity {
                     public void onClick(View v) {
                         if (tile.getState() == TileState.NOSTATE) {
                             tile.setState(TileState.PRESSED);
-                            buttonPressed.setBackgroundResource(category.getPressedIcon());
+                            buttonPressed.setBackgroundResource(category.getIconPressed());
                             buttonSticks.setBackgroundResource(R.drawable.tile_pressed_stick);
                         } else if (tile.getState() == TileState.PRESSED) {
                             tile.setState(TileState.PRESSED2);
@@ -112,7 +124,7 @@ public class TilesActivity extends RootActivity {
                         }
                     }
                 });
-                buttonBorder.setBackgroundResource(category.getColor());
+                buttonBorder.setBackgroundResource(category.getIcon());
                 LinearLayout.LayoutParams paramsBorder = new LinearLayout.LayoutParams(
                         tile.getWidth(), tile.getHeight());
                 buttonBorder.setLayoutParams(paramsBorder);
