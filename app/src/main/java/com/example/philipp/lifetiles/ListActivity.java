@@ -41,16 +41,27 @@ public class ListActivity extends RootActivity {
 
         for (final Category category : InitTiles.getCategories()) {
             // category
+            RelativeLayout relativeLayoutCategory = new RelativeLayout(this);
+
             Button buttonCategory = new Button(this);
             buttonCategory.setBackgroundResource(R.drawable.category);
-            LinearLayout.LayoutParams paramsCategory = new LinearLayout.LayoutParams(
-                    ViewGroup.LayoutParams.MATCH_PARENT, 70); // image scale
-            buttonCategory.setLayoutParams(paramsCategory);
-            buttonCategory.setText(category.getName());
-            buttonCategory.setTextColor(Color.DKGRAY);
-            buttonCategory.setTextSize(14);
-            buttonCategory.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
-            layout.addView(buttonCategory);
+            LinearLayout.LayoutParams paramsCategoryButton = new LinearLayout.LayoutParams(
+                    ViewGroup.LayoutParams.MATCH_PARENT, 50); // image scale
+            buttonCategory.setLayoutParams(paramsCategoryButton);
+            relativeLayoutCategory.addView(buttonCategory);
+
+            TextView textViewCategory = new TextView(this);
+            RelativeLayout.LayoutParams paramsCategoryText = new RelativeLayout.LayoutParams(
+                    ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
+            paramsCategoryText.addRule(RelativeLayout.CENTER_IN_PARENT, RelativeLayout.TRUE);
+            textViewCategory.setLayoutParams(paramsCategoryText);
+            textViewCategory.setText(category.getName());
+            textViewCategory.setTextColor(Color.DKGRAY);
+            textViewCategory.setTextSize(14);
+            textViewCategory.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
+            relativeLayoutCategory.addView(textViewCategory);
+
+            layout.addView(relativeLayoutCategory);
 
             // category stripe
             Button buttonCategoryStripe = new Button(this);

@@ -11,6 +11,8 @@ import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.HorizontalScrollView;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
+import android.widget.TextView;
 
 import com.example.philipp.lifetiles.Fixtures.InitTiles;
 import com.example.philipp.lifetiles.components.Category;
@@ -40,17 +42,28 @@ public class TilesActivity extends RootActivity {
         LinearLayout layout = (LinearLayout) findViewById(R.id.theActivityTiles);
 
         for (final Category category : InitTiles.getCategories()) {
-            // category
+
+            RelativeLayout relativeLayoutCategory = new RelativeLayout(this);
+
             Button buttonCategory = new Button(this);
             buttonCategory.setBackgroundResource(R.drawable.category);
-            LinearLayout.LayoutParams paramsCategory = new LinearLayout.LayoutParams(
-                    ViewGroup.LayoutParams.MATCH_PARENT, 70); // image scale
-            buttonCategory.setLayoutParams(paramsCategory);
-            buttonCategory.setText(category.getName());
-            buttonCategory.setTextColor(Color.DKGRAY);
-            buttonCategory.setTextSize(14);
-            buttonCategory.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
-            layout.addView(buttonCategory);
+            LinearLayout.LayoutParams paramsCategoryButton = new LinearLayout.LayoutParams(
+                    ViewGroup.LayoutParams.MATCH_PARENT, 50); // image scale
+            buttonCategory.setLayoutParams(paramsCategoryButton);
+            relativeLayoutCategory.addView(buttonCategory);
+
+            TextView textView = new TextView(this);
+            RelativeLayout.LayoutParams paramsCategoryText = new RelativeLayout.LayoutParams(
+                    ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
+            paramsCategoryText.addRule(RelativeLayout.CENTER_IN_PARENT, RelativeLayout.TRUE);
+            textView.setLayoutParams(paramsCategoryText);
+            textView.setText(category.getName());
+            textView.setTextColor(Color.DKGRAY);
+            textView.setTextSize(14);
+            textView.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
+            relativeLayoutCategory.addView(textView);
+
+            layout.addView(relativeLayoutCategory);
 
             // category stripe
             Button buttonCategoryStripe = new Button(this);
@@ -68,7 +81,7 @@ public class TilesActivity extends RootActivity {
             // horizontal layout
             LinearLayout layoutCategoryTiles = new LinearLayout(this);
             layoutCategoryTiles.setOrientation(LinearLayout.HORIZONTAL);
-            layoutCategoryTiles.setPadding(0, 15, 0, 0);
+            layoutCategoryTiles.setPadding(20, 15, 0, 0);
             layoutCategoryScroll.addView(layoutCategoryTiles);
 
             // category tiles

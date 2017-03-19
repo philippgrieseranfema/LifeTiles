@@ -6,18 +6,19 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.View;
+import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.FrameLayout;
 import android.widget.HorizontalScrollView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
+import android.widget.Spinner;
 import android.widget.TextView;
 
 import com.example.philipp.lifetiles.Fixtures.InitTiles;
-import com.example.philipp.lifetiles.components.Category;
 import com.example.philipp.lifetiles.components.Tile;
-import com.example.philipp.lifetiles.components.TileState;
 
 public class EditActivity extends RootActivity {
 
@@ -44,7 +45,6 @@ public class EditActivity extends RootActivity {
         createChooseCategory(layout);
         createNameDescription(layout);
         createGetIcon(layout);
-        createSelectType(layout);
     }
 
     private void createGetIcon(LinearLayout layout) {
@@ -77,18 +77,33 @@ public class EditActivity extends RootActivity {
         }
     }
 
-    private void createSelectType(LinearLayout layout) {
-        createHeadline(layout, "Type");
-    }
-
     private void createChooseCategory(LinearLayout layout) {
-        createHeadline(layout, "Category");
+        createHeadline(layout, "Tile Type");
 
-        for (Category category : InitTiles.getCategories()) {
-            TextView textViewCategoryName = new TextView(this);
-            textViewCategoryName.setText(category.getName());
-            layout.addView(textViewCategoryName);
+        String[] array = new String[InitTiles.getCategories().size()];
+        for (int i = 0; i < InitTiles.getCategories().size(); i++) {
+            array[i] = (InitTiles.getCategories().get(i).getName());
         }
+
+        Spinner spinner = new Spinner(this);
+        ArrayAdapter<String> spinnerArrayAdapter =
+                new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, array);
+        spinnerArrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinner.setAdapter(spinnerArrayAdapter);
+        layout.addView(spinner);
+
+        String[] arrayType = new String[3];
+        arrayType[0] = "Simple One Click Tile";
+        arrayType[1] = "Three Clicks Tile";
+        arrayType[2] = "Number Field Tile";
+
+        Spinner spinnerType = new Spinner(this);
+        ArrayAdapter<String> spinnerArrayAdapterType =
+                new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, arrayType);
+        spinnerArrayAdapterType.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinnerType.setAdapter(spinnerArrayAdapterType);
+        layout.addView(spinnerType);
+
     }
 
     private void createNameDescription(LinearLayout layout) {
@@ -96,12 +111,13 @@ public class EditActivity extends RootActivity {
 
         EditText textViewName = new EditText(this);
         textViewName.setText("Title");
-        textViewName.setPadding(0, 0, 0, 0);
+        textViewName.setHighlightColor(Color.DKGRAY);
+        textViewName.setPadding(20, 0, 0, 0);
         layout.addView(textViewName);
 
         EditText textViewDescription = new EditText(this);
         textViewDescription.setText("Description");
-        textViewDescription.setPadding(0, 0, 0, 0);
+        textViewDescription.setPadding(20, 0, 0, 0);
         layout.addView(textViewDescription);
     }
 
@@ -109,16 +125,26 @@ public class EditActivity extends RootActivity {
         createHeadline(layout, "Preview");
 
         RelativeLayout relativeLayout = new RelativeLayout(this);
+        relativeLayout.setPadding(30, 30, 0, 30);
 
-        LinearLayout linearLayout = new LinearLayout(this);
+
         Tile newTile = InitTiles.getNewTileCategory().getTiles().get(0);
         Button buttonNew = new Button(this);
         buttonNew.setBackgroundResource(R.drawable.tile_white);
         LinearLayout.LayoutParams paramsButton = new LinearLayout.LayoutParams(
                 newTile.getWidth(), newTile.getHeight());
         buttonNew.setPadding(20,0,0,20);
-        linearLayout.addView(buttonNew, paramsButton);
-        relativeLayout.addView(linearLayout);
+        relativeLayout.addView(buttonNew, paramsButton);
+
+        RelativeLayout relativeLayoutSave = new RelativeLayout(this);
+        relativeLayoutSave.setPadding(600, 10, 0, 0);
+        Button buttonSave = new Button(this);
+        buttonSave.setBackgroundResource(R.drawable.save_02);
+        LinearLayout.LayoutParams paramsButtonSave = new LinearLayout.LayoutParams(
+                newTile.getWidth(), newTile.getHeight());
+        relativeLayoutSave.addView(buttonSave, paramsButtonSave);
+        relativeLayout.addView(relativeLayoutSave);
+
 
         TextView textViewName = new TextView(this);
         textViewName.setText(newTile.getName());
@@ -134,13 +160,26 @@ public class EditActivity extends RootActivity {
     }
 
     private void createHeadline(LinearLayout layout, String title) {
-        Button headline = new Button(this);
-        headline.setBackgroundResource(R.drawable.categorie_00);
-        headline.setText(title);
-        headline.setTextColor(Color.DKGRAY);
-        headline.setTextSize(14);
-        headline.setPadding(0, 0, 0, 40);
-        headline.setTextAlignment(View.TEXT_ALIGNMENT_GRAVITY);
-        layout.addView(headline);
+        RelativeLayout relativeLayoutCategory = new RelativeLayout(this);
+
+        Button buttonCategory = new Button(this);
+        buttonCategory.setBackgroundResource(R.drawable.category);
+        LinearLayout.LayoutParams paramsCategoryButton = new LinearLayout.LayoutParams(
+                ViewGroup.LayoutParams.MATCH_PARENT, 50); // image scale
+        buttonCategory.setLayoutParams(paramsCategoryButton);
+        relativeLayoutCategory.addView(buttonCategory);
+
+        TextView textView = new TextView(this);
+        RelativeLayout.LayoutParams paramsCategoryText = new RelativeLayout.LayoutParams(
+                ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
+        paramsCategoryText.addRule(RelativeLayout.CENTER_IN_PARENT, RelativeLayout.TRUE);
+        textView.setLayoutParams(paramsCategoryText);
+        textView.setText(title);
+        textView.setTextColor(Color.DKGRAY);
+        textView.setTextSize(14);
+        textView.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
+        relativeLayoutCategory.addView(textView);
+
+        layout.addView(relativeLayoutCategory);
     }
 }
