@@ -13,9 +13,9 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import com.example.philipp.lifetiles.Fixtures.InitTiles;
 import com.example.philipp.lifetiles.components.Category;
 import com.example.philipp.lifetiles.components.Tile;
+import com.example.philipp.lifetiles.db.DBFixtures;
 
 public class ListActivity extends RootActivity {
 
@@ -39,7 +39,7 @@ public class ListActivity extends RootActivity {
     private void createCategories() {
         LinearLayout layout = (LinearLayout) findViewById(R.id.theActivityList);
 
-        for (final Category category : InitTiles.getCategories()) {
+        for (final Category category : DBFixtures.getCategories()) {
             // category
             RelativeLayout relativeLayoutCategory = new RelativeLayout(this);
 

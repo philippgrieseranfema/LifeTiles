@@ -1,6 +1,5 @@
 package com.example.philipp.lifetiles;
 
-import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
@@ -11,13 +10,11 @@ import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.HorizontalScrollView;
 import android.widget.LinearLayout;
-import android.widget.RelativeLayout;
-import android.widget.TextView;
 
-import com.example.philipp.lifetiles.Fixtures.InitTiles;
 import com.example.philipp.lifetiles.components.Category;
 import com.example.philipp.lifetiles.components.Tile;
 import com.example.philipp.lifetiles.components.TileState;
+import com.example.philipp.lifetiles.db.DBFixtures;
 
 public class TilesActivity extends RootActivity {
 
@@ -41,29 +38,9 @@ public class TilesActivity extends RootActivity {
     private void createCategories() {
         LinearLayout layout = (LinearLayout) findViewById(R.id.theActivityTiles);
 
-        for (final Category category : InitTiles.getCategories()) {
+        for (final Category category : DBFixtures.getCategories()) {
 
-            RelativeLayout relativeLayoutCategory = new RelativeLayout(this);
-
-            Button buttonCategory = new Button(this);
-            buttonCategory.setBackgroundResource(R.drawable.category);
-            LinearLayout.LayoutParams paramsCategoryButton = new LinearLayout.LayoutParams(
-                    ViewGroup.LayoutParams.MATCH_PARENT, 50); // image scale
-            buttonCategory.setLayoutParams(paramsCategoryButton);
-            relativeLayoutCategory.addView(buttonCategory);
-
-            TextView textView = new TextView(this);
-            RelativeLayout.LayoutParams paramsCategoryText = new RelativeLayout.LayoutParams(
-                    ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
-            paramsCategoryText.addRule(RelativeLayout.CENTER_IN_PARENT, RelativeLayout.TRUE);
-            textView.setLayoutParams(paramsCategoryText);
-            textView.setText(category.getName());
-            textView.setTextColor(Color.DKGRAY);
-            textView.setTextSize(14);
-            textView.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
-            relativeLayoutCategory.addView(textView);
-
-            layout.addView(relativeLayoutCategory);
+            createHeadline(layout, category.getName());
 
             // category stripe
             Button buttonCategoryStripe = new Button(this);

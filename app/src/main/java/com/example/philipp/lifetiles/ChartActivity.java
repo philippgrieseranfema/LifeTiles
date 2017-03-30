@@ -26,6 +26,7 @@ public class ChartActivity extends RootActivity {
         createMenu(ChartActivity.class);
 
         LinearLayout layout = (LinearLayout) findViewById(R.id.theActivityChart);
+        createHeadline(layout, "Diagram");
         createBarChart(layout);
     }
 

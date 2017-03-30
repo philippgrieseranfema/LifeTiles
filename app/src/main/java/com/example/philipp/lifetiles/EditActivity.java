@@ -5,8 +5,6 @@ import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuInflater;
-import android.view.View;
-import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
@@ -17,8 +15,8 @@ import android.widget.RelativeLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
 
-import com.example.philipp.lifetiles.Fixtures.InitTiles;
 import com.example.philipp.lifetiles.components.Tile;
+import com.example.philipp.lifetiles.db.DBFixtures;
 
 public class EditActivity extends RootActivity {
 
@@ -61,7 +59,7 @@ public class EditActivity extends RootActivity {
         layoutCategoryScroll.addView(layoutCategoryTiles);
 
         // category tiles
-        for (final Tile tile : InitTiles.getAllIconTiles()) {
+        for (final Tile tile : DBFixtures.getAllIconTiles()) {
 
             FrameLayout frameLayout = new FrameLayout(this);
             frameLayout.setPadding(15, 0, 15, 15);
@@ -80,9 +78,9 @@ public class EditActivity extends RootActivity {
     private void createChooseCategory(LinearLayout layout) {
         createHeadline(layout, "Tile Type");
 
-        String[] array = new String[InitTiles.getCategories().size()];
-        for (int i = 0; i < InitTiles.getCategories().size(); i++) {
-            array[i] = (InitTiles.getCategories().get(i).getName());
+        String[] array = new String[DBFixtures.getCategories().size()];
+        for (int i = 0; i < DBFixtures.getCategories().size(); i++) {
+            array[i] = (DBFixtures.getCategories().get(i).getName());
         }
 
         Spinner spinner = new Spinner(this);
@@ -128,7 +126,7 @@ public class EditActivity extends RootActivity {
         relativeLayout.setPadding(30, 30, 0, 30);
 
 
-        Tile newTile = InitTiles.getNewTileCategory().getTiles().get(0);
+        Tile newTile = DBFixtures.getNewTileCategory().getTiles().get(0);
         Button buttonNew = new Button(this);
         buttonNew.setBackgroundResource(R.drawable.tile_white);
         LinearLayout.LayoutParams paramsButton = new LinearLayout.LayoutParams(
@@ -157,29 +155,5 @@ public class EditActivity extends RootActivity {
         relativeLayout.addView(textViewDescription);
 
         layout.addView(relativeLayout);
-    }
-
-    private void createHeadline(LinearLayout layout, String title) {
-        RelativeLayout relativeLayoutCategory = new RelativeLayout(this);
-
-        Button buttonCategory = new Button(this);
-        buttonCategory.setBackgroundResource(R.drawable.category);
-        LinearLayout.LayoutParams paramsCategoryButton = new LinearLayout.LayoutParams(
-                ViewGroup.LayoutParams.MATCH_PARENT, 50); // image scale
-        buttonCategory.setLayoutParams(paramsCategoryButton);
-        relativeLayoutCategory.addView(buttonCategory);
-
-        TextView textView = new TextView(this);
-        RelativeLayout.LayoutParams paramsCategoryText = new RelativeLayout.LayoutParams(
-                ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
-        paramsCategoryText.addRule(RelativeLayout.CENTER_IN_PARENT, RelativeLayout.TRUE);
-        textView.setLayoutParams(paramsCategoryText);
-        textView.setText(title);
-        textView.setTextColor(Color.DKGRAY);
-        textView.setTextSize(14);
-        textView.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
-        relativeLayoutCategory.addView(textView);
-
-        layout.addView(relativeLayoutCategory);
     }
 }

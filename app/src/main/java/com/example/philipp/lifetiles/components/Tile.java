@@ -21,7 +21,11 @@ public class Tile {
         this.description = description;
         this.icon = icon;
         this.id = id;
-        this.state = TileState.NOSTATE;
+        this.state = TileState.valueOf("NOSTATE");
+    }
+
+    public String toString() {
+        return "Tile: " + name;
     }
 
     public String getName() {

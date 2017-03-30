@@ -1,15 +1,18 @@
 package com.example.philipp.lifetiles;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
+import android.widget.TextView;
 
-import com.example.philipp.lifetiles.Fixtures.InitTiles;
 import com.example.philipp.lifetiles.components.TileMenu;
+import com.example.philipp.lifetiles.db.DBFixtures;
 
 public abstract class RootActivity extends AppCompatActivity {
 
@@ -75,7 +78,7 @@ public abstract class RootActivity extends AppCompatActivity {
         layout.addView(layoutMenu);
 
         // menu buttons
-        for (final TileMenu tile : InitTiles.getMenuTiles()) {
+        for (final TileMenu tile : DBFixtures.getMenuTiles()) {
             final Button buttonTile = new Button(this);
             if (tile.getClassToSwitch().equals(activityClass)) {
                 buttonTile.setBackgroundResource(tile.getIconPressed());
@@ -96,5 +99,29 @@ public abstract class RootActivity extends AppCompatActivity {
             buttonTile.setLayoutParams(params);
             layoutMenu.addView(buttonTile);
         }
+    }
+
+    public void createHeadline(LinearLayout layout, String title) {
+        RelativeLayout relativeLayoutCategory = new RelativeLayout(this);
+
+        Button buttonCategory = new Button(this);
+        buttonCategory.setBackgroundResource(R.drawable.category);
+        LinearLayout.LayoutParams paramsCategoryButton = new LinearLayout.LayoutParams(
+                ViewGroup.LayoutParams.MATCH_PARENT, 50); // image scale
+        buttonCategory.setLayoutParams(paramsCategoryButton);
+        relativeLayoutCategory.addView(buttonCategory);
+
+        TextView textView = new TextView(this);
+        RelativeLayout.LayoutParams paramsCategoryText = new RelativeLayout.LayoutParams(
+                ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
+        paramsCategoryText.addRule(RelativeLayout.CENTER_IN_PARENT, RelativeLayout.TRUE);
+        textView.setLayoutParams(paramsCategoryText);
+        textView.setText(title);
+        textView.setTextColor(Color.DKGRAY);
+        textView.setTextSize(14);
+        textView.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
+        relativeLayoutCategory.addView(textView);
+
+        layout.addView(relativeLayoutCategory);
     }
 }

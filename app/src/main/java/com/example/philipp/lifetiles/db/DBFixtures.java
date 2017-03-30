@@ -1,4 +1,4 @@
-package com.example.philipp.lifetiles.Fixtures;
+package com.example.philipp.lifetiles.db;
 
 import com.example.philipp.lifetiles.ChartActivity;
 import com.example.philipp.lifetiles.EditActivity;
@@ -18,7 +18,7 @@ import java.util.List;
  * Created by Philipp on 09.12.2016.
  */
 
-public class InitTiles {
+public class DBFixtures {
 
     private static int tileMenuWidth = 60;
     private static int tileMenuHeight = 60;
@@ -40,7 +40,6 @@ public class InitTiles {
         categories.add(getCategorySport());
         categories.add(getCategoryHealth());
         categories.add(getCategoryFinance());
-        categories.add(getCategoryLifestyle());
         categories.add(getCategoryLifestyle());
         return categories;
     }
@@ -66,38 +65,37 @@ public class InitTiles {
         tiles.add(new Tile(0, R.drawable.icon_sport_01, "sport", "Your sports activity", tileWidth, tileHeight));
         tiles.add(new Tile(1, R.drawable.icon_badminton_01, "badminton", "Badminton match", tileWidth, tileHeight));
         tiles.add(new Tile(2, R.drawable.icon_barbell_01, "barbell", "Fitness Club", tileWidth, tileHeight));
-        tiles.add(new Tile(3, R.drawable.icon_soccer_01, "soccer", "You played soccer today", tileWidth, tileHeight));
-        tiles.add(new Tile(4, R.drawable.icon_bike_01, "bike", "This is a description", tileWidth, tileHeight));
-        tiles.add(new Tile(5, R.drawable.icon_soccer_01, "soccer", "This is a description", tileWidth, tileHeight));
+        tiles.add(new Tile(3, R.drawable.icon_soccer_01, "soccer", "You played soccer", tileWidth, tileHeight));
+        tiles.add(new Tile(4, R.drawable.icon_bike_01, "bike", "With bike to work", tileWidth, tileHeight));
         return tiles;
     }
 
     private static List<Tile> getCategoryTilesHealth() {
         List<Tile> tiles = new ArrayList<>();
-        tiles.add(new Tile(0, R.drawable.icon_apple_01, "apple", "This is a description", tileWidth, tileHeight));
-        tiles.add(new Tile(1, R.drawable.icon_bottle_01, "bottle", "This is a description", tileWidth, tileHeight));
-        tiles.add(new Tile(1, R.drawable.icon_pill_01, "pill", "This is a description", tileWidth, tileHeight));
-        tiles.add(new Tile(0, R.drawable.icon_plus_01, "plus", "This is a description", tileWidth, tileHeight));
-        tiles.add(new Tile(1, R.drawable.icon_burger_01, "burger", "This is a description", tileWidth, tileHeight));
+        tiles.add(new Tile(5, R.drawable.icon_apple_01, "apple", "An apple a day", tileWidth, tileHeight));
+        tiles.add(new Tile(6, R.drawable.icon_bottle_01, "bottle", "Drinking enoiigh is important", tileWidth, tileHeight));
+        tiles.add(new Tile(7, R.drawable.icon_pill_01, "pill", "This is a description", tileWidth, tileHeight));
+        tiles.add(new Tile(8, R.drawable.icon_plus_01, "plus", "This is a description", tileWidth, tileHeight));
+        tiles.add(new Tile(9, R.drawable.icon_burger_01, "burger", "This is a description", tileWidth, tileHeight));
         return tiles;
     }
 
     private static List<Tile> getCategoryTilesFinance() {
         List<Tile> tiles = new ArrayList<>();
-        tiles.add(new Tile(0, R.drawable.icon_money_01, "money", "This is a description", tileWidth, tileHeight));
-        tiles.add(new Tile(1, R.drawable.icon_shopping_01, "shopping", "This is a description", tileWidth, tileHeight));
-        tiles.add(new Tile(2, R.drawable.icon_pig_01, "pig", "This is a description", tileWidth, tileHeight));
+        tiles.add(new Tile(10, R.drawable.icon_money_01, "money", "This is a description", tileWidth, tileHeight));
+        tiles.add(new Tile(11, R.drawable.icon_shopping_01, "shopping", "This is a description", tileWidth, tileHeight));
+        tiles.add(new Tile(12, R.drawable.icon_pig_01, "pig", "This is a description", tileWidth, tileHeight));
         return tiles;
     }
 
     private static List<Tile> getCategoryTilesLifestyle() {
         List<Tile> tiles = new ArrayList<>();
-        tiles.add(new Tile(0, R.drawable.icon_phone_01, "phone", "So much phone this is", tileWidth, tileHeight));
-        tiles.add(new Tile(1, R.drawable.icon_cocktail_01, "cocktail", "This is a description", tileWidth, tileHeight));
-        tiles.add(new Tile(2, R.drawable.icon_dance_01, "dance", "This is a description", tileWidth, tileHeight));
-        tiles.add(new Tile(3, R.drawable.icon_book_02, "book", "This is a description", tileWidth, tileHeight));
-        tiles.add(new Tile(3, R.drawable.icon_friends_01, "friends", "Go out with your friends", tileWidth, tileHeight));
-        tiles.add(new Tile(4, R.drawable.icon_controller_01, "controller", "This is a description", tileWidth, tileHeight));
+        tiles.add(new Tile(13, R.drawable.icon_phone_01, "phone", "So much phone this is", tileWidth, tileHeight));
+        tiles.add(new Tile(14, R.drawable.icon_cocktail_01, "cocktail", "This is a description", tileWidth, tileHeight));
+        tiles.add(new Tile(15, R.drawable.icon_dance_01, "dance", "This is a description", tileWidth, tileHeight));
+        tiles.add(new Tile(16, R.drawable.icon_book_02, "book", "This is a description", tileWidth, tileHeight));
+        tiles.add(new Tile(17, R.drawable.icon_friends_01, "friends", "Go out with your friends", tileWidth, tileHeight));
+        tiles.add(new Tile(18, R.drawable.icon_controller_01, "controller", "This is a description", tileWidth, tileHeight));
         return tiles;
     }
 
@@ -114,21 +112,20 @@ public class InitTiles {
         tiles.add(new Tile(2, R.drawable.icon_barbell_01, "barbell", "Fitness Club", tileWidth, tileHeight));
         tiles.add(new Tile(3, R.drawable.icon_soccer_01, "soccer", "You played soccer today", tileWidth, tileHeight));
         tiles.add(new Tile(4, R.drawable.icon_bike_01, "bike", "This is a description", tileWidth, tileHeight));
-        tiles.add(new Tile(5, R.drawable.icon_soccer_01, "soccer", "This is a description", tileWidth, tileHeight));
-        tiles.add(new Tile(6, R.drawable.icon_apple_01, "apple", "This is a description", tileWidth, tileHeight));
-        tiles.add(new Tile(7, R.drawable.icon_bottle_01, "bottle", "This is a description", tileWidth, tileHeight));
-        tiles.add(new Tile(8, R.drawable.icon_pill_01, "pill", "This is a description", tileWidth, tileHeight));
-        tiles.add(new Tile(9, R.drawable.icon_plus_01, "plus", "This is a description", tileWidth, tileHeight));
-        tiles.add(new Tile(10, R.drawable.icon_burger_01, "burger", "This is a description", tileWidth, tileHeight));
-        tiles.add(new Tile(11, R.drawable.icon_money_01, "money", "This is a description", tileWidth, tileHeight));
-        tiles.add(new Tile(12, R.drawable.icon_shopping_01, "shopping", "This is a description", tileWidth, tileHeight));
-        tiles.add(new Tile(13, R.drawable.icon_pig_01, "pig", "This is a description", tileWidth, tileHeight));
-        tiles.add(new Tile(14, R.drawable.icon_phone_01, "phone", "So much phone this is", tileWidth, tileHeight));
-        tiles.add(new Tile(15, R.drawable.icon_cocktail_01, "cocktail", "This is a description", tileWidth, tileHeight));
-        tiles.add(new Tile(16, R.drawable.icon_dance_01, "dance", "This is a description", tileWidth, tileHeight));
-        tiles.add(new Tile(17, R.drawable.icon_book_02, "book", "This is a description", tileWidth, tileHeight));
-        tiles.add(new Tile(18, R.drawable.icon_friends_01, "friends", "Go out with your friends", tileWidth, tileHeight));
-        tiles.add(new Tile(19, R.drawable.icon_controller_01, "controller", "This is a description", tileWidth, tileHeight));
+        tiles.add(new Tile(5, R.drawable.icon_apple_01, "apple", "This is a description", tileWidth, tileHeight));
+        tiles.add(new Tile(6, R.drawable.icon_bottle_01, "bottle", "This is a description", tileWidth, tileHeight));
+        tiles.add(new Tile(7, R.drawable.icon_pill_01, "pill", "This is a description", tileWidth, tileHeight));
+        tiles.add(new Tile(8, R.drawable.icon_plus_01, "plus", "This is a description", tileWidth, tileHeight));
+        tiles.add(new Tile(9, R.drawable.icon_burger_01, "burger", "This is a description", tileWidth, tileHeight));
+        tiles.add(new Tile(10, R.drawable.icon_money_01, "money", "This is a description", tileWidth, tileHeight));
+        tiles.add(new Tile(11, R.drawable.icon_shopping_01, "shopping", "This is a description", tileWidth, tileHeight));
+        tiles.add(new Tile(12, R.drawable.icon_pig_01, "pig", "This is a description", tileWidth, tileHeight));
+        tiles.add(new Tile(13, R.drawable.icon_phone_01, "phone", "So much phone this is", tileWidth, tileHeight));
+        tiles.add(new Tile(14, R.drawable.icon_cocktail_01, "cocktail", "This is a description", tileWidth, tileHeight));
+        tiles.add(new Tile(15, R.drawable.icon_dance_01, "dance", "This is a description", tileWidth, tileHeight));
+        tiles.add(new Tile(16, R.drawable.icon_book_02, "book", "This is a description", tileWidth, tileHeight));
+        tiles.add(new Tile(17, R.drawable.icon_friends_01, "friends", "Go out with your friends", tileWidth, tileHeight));
+        tiles.add(new Tile(18, R.drawable.icon_controller_01, "controller", "This is a description", tileWidth, tileHeight));
         return tiles;
     }
 }
