@@ -7,7 +7,11 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
 import com.example.philipp.lifetiles.components.Category;
+import com.example.philipp.lifetiles.components.CategoryColor;
 import com.example.philipp.lifetiles.components.Tile;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class DBHandler extends SQLiteOpenHelper {
 
@@ -116,18 +120,34 @@ public class DBHandler extends SQLiteOpenHelper {
 
     public Category getCategory(int id) {
         SQLiteDatabase db = this.getReadableDatabase();
-        Cursor cursor = db.query(TABLE_CATEGORIES, new String[]{KEY_ID,
-                        KEY_TILE_NAME, KEY_CATEGORY_ICON, KEY_CATEGORY_ICON_PRESSED, KEY_CATEGORY_ICON_CATEGORY}, KEY_ID + "=?",
+        Cursor cursor = db.query(TABLE_CATEGORIES,
+                new String[]{KEY_ID, KEY_TILE_NAME, KEY_CATEGORY_ICON, KEY_CATEGORY_ICON_PRESSED, KEY_CATEGORY_ICON_CATEGORY},
+                KEY_ID + "=?",
                 new String[]{String.valueOf(id)}, null, null, null, null);
         if (cursor != null) {
             cursor.moveToFirst();
         }
-        Cursor cursor2 = db.query(TABLE_MATCH, new String[]{KEY_ID, // TODO !!!
-                        KEY_MATCH_CATEGORY_ID, KEY_MATCH_TILE_ID}, cursor.getString(0) + "=" + KEY_MATCH_CATEGORY_ID,
-                new String[]{String.valueOf(id)}, null, null, null, null);
-        if (cursor2 != null) {
-            cursor2.moveToFirst();
+
+        Cursor cursor2 = db.query(TABLE_MATCH,
+                new String[]{KEY_ID, KEY_MATCH_CATEGORY_ID, KEY_MATCH_TILE_ID},
+                KEY_MATCH_CATEGORY_ID + " = 2",
+                new String[]{}, null, null, null, null);
+
+        int i = 0;
+        List<Integer> tileIds = new ArrayList<>();
+        while (cursor2.moveToNext()) {
+            tileIds.add(cursor2.getInt(cursor2.getColumnIndex(KEY_MATCH_TILE_ID)));
+            i++;
+            if (cursor2.getCount() <= i) {
+                break;
+            }
         }
-        return null;
+
+        List<Tile> tiles = new ArrayList<>();
+        for (int tileId : tileIds) {
+            tiles.add(getTile(tileId));
+        }
+
+        return new Category(cursor.getInt(0), cursor.getString(1), CategoryColor.CATEGORY_COLOR_YELLOW, tiles); // TODO color
     }
 }

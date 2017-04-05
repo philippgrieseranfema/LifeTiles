@@ -45,6 +45,7 @@ public class DBInit {
             }
         }
         Category category = dbHandler.getCategory(1);
+        System.out.println("ohoho");
     }
 
 }
