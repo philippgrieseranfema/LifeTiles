@@ -3,14 +3,16 @@ package com.example.philipp.lifetiles.db;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
+import android.database.DatabaseUtils;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
 import com.example.philipp.lifetiles.components.Category;
-import com.example.philipp.lifetiles.components.CategoryColor;
 import com.example.philipp.lifetiles.components.Tile;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 public class DBHandler extends SQLiteOpenHelper {
@@ -34,6 +36,10 @@ public class DBHandler extends SQLiteOpenHelper {
     private static final String TABLE_MATCH = "match";
     private static final String KEY_MATCH_CATEGORY_ID = "category";
     private static final String KEY_MATCH_TILE_ID = "tile";
+
+    private static final String TABLE_ENTRIES = "entries";
+    private static final String KEY_ENTRIES_TILE_ID = "tile";
+    private static final String KEY_ENTRIES_DATE = "date";
 
     public DBHandler(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
@@ -60,6 +66,12 @@ public class DBHandler extends SQLiteOpenHelper {
                 + KEY_MATCH_TILE_ID + " NUMERIC" + ")";
         db.execSQL(CREATE_MATCH_TABLE);
         System.out.println("Created table: " + TABLE_MATCH);
+        // ENTRY
+        String CREATE_ENTRIES_TABLE = "CREATE TABLE " + TABLE_ENTRIES + "("
+                + KEY_ID + " INTEGER PRIMARY KEY," + KEY_ENTRIES_TILE_ID + " NUMERIC,"
+                + KEY_ENTRIES_DATE + " DATE" + ")";
+        db.execSQL(CREATE_ENTRIES_TABLE);
+        System.out.println("Created table: " + TABLE_ENTRIES);
     }
 
     @Override
@@ -88,7 +100,7 @@ public class DBHandler extends SQLiteOpenHelper {
         values.put(KEY_CATEGORY_ICON, category.getIcon());
         values.put(KEY_CATEGORY_ICON_PRESSED, category.getIconPressed());
         values.put(KEY_CATEGORY_ICON_CATEGORY, category.getIconCategory());
-        // values.put(KEY_CATEGORY_COLOR, category.getColor()); TODO
+        values.put(KEY_CATEGORY_COLOR, category.getColor());
         db.insert(TABLE_CATEGORIES, null, values);
         db.close();
         System.out.println("Added category: " + category);
@@ -101,7 +113,21 @@ public class DBHandler extends SQLiteOpenHelper {
         values.put(KEY_MATCH_TILE_ID, tile.getId());
         db.insert(TABLE_MATCH, null, values);
         db.close();
-        System.out.println("Added match: " + category.getId() + " - " + tile.getId());
+        System.out.println("Added match: " + category.getId() + " - " + tile.getId() + " - " + tile.getName());
+    }
+
+    public void addEntry(Tile tile) {
+        // current date
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+        String date = sdf.format(new Date());
+
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues values = new ContentValues();
+        values.put(KEY_MATCH_TILE_ID, tile.getId());
+        values.put(KEY_ENTRIES_DATE, date);
+        db.insert(TABLE_ENTRIES, null, values);
+        db.close();
+        System.out.println("Added entry: " + tile.getName() + " (" + tile.getId() + "):  " + date);
     }
 
     public Tile getTile(int id) {
@@ -121,7 +147,7 @@ public class DBHandler extends SQLiteOpenHelper {
     public Category getCategory(int id) {
         SQLiteDatabase db = this.getReadableDatabase();
         Cursor cursor = db.query(TABLE_CATEGORIES,
-                new String[]{KEY_ID, KEY_TILE_NAME, KEY_CATEGORY_ICON, KEY_CATEGORY_ICON_PRESSED, KEY_CATEGORY_ICON_CATEGORY},
+                new String[]{KEY_ID, KEY_TILE_NAME, KEY_CATEGORY_ICON, KEY_CATEGORY_ICON_PRESSED, KEY_CATEGORY_ICON_CATEGORY, KEY_CATEGORY_COLOR},
                 KEY_ID + "=?",
                 new String[]{String.valueOf(id)}, null, null, null, null);
         if (cursor != null) {
@@ -130,8 +156,8 @@ public class DBHandler extends SQLiteOpenHelper {
 
         Cursor cursor2 = db.query(TABLE_MATCH,
                 new String[]{KEY_ID, KEY_MATCH_CATEGORY_ID, KEY_MATCH_TILE_ID},
-                KEY_MATCH_CATEGORY_ID + " = 2",
-                new String[]{}, null, null, null, null);
+                KEY_MATCH_CATEGORY_ID + " = ?",
+                new String[]{String.valueOf(id)}, null, null, null, null);
 
         int i = 0;
         List<Integer> tileIds = new ArrayList<>();
@@ -148,6 +174,22 @@ public class DBHandler extends SQLiteOpenHelper {
             tiles.add(getTile(tileId));
         }
 
-        return new Category(cursor.getInt(0), cursor.getString(1), CategoryColor.CATEGORY_COLOR_YELLOW, tiles); // TODO color
+        return new Category(cursor.getInt(0), cursor.getString(1), cursor.getInt(5), tiles);
+    }
+
+    public List<Category> getCategories() {
+        SQLiteDatabase db = this.getReadableDatabase();
+        long numRows = DatabaseUtils.queryNumEntries(db, TABLE_CATEGORIES);
+
+        List<Category> categories = new ArrayList<>();
+        for (int i = 1; i <= numRows; i++) {
+            categories.add(getCategory(i));
+        }
+
+        return categories;
+    }
+
+    public int getTileStat() {
+        return -1;
     }
 }

@@ -14,9 +14,11 @@ import android.widget.LinearLayout;
 import com.example.philipp.lifetiles.components.Category;
 import com.example.philipp.lifetiles.components.Tile;
 import com.example.philipp.lifetiles.components.TileState;
-import com.example.philipp.lifetiles.db.DBFixtures;
+import com.example.philipp.lifetiles.db.DBHandler;
 
 public class TilesActivity extends RootActivity {
+
+    DBHandler dbHandler = new DBHandler(this);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,7 +40,7 @@ public class TilesActivity extends RootActivity {
     private void createCategories() {
         LinearLayout layout = (LinearLayout) findViewById(R.id.theActivityTiles);
 
-        for (final Category category : DBFixtures.getCategories()) {
+        for (final Category category : dbHandler.getCategories()) {
 
             createHeadline(layout, category.getName());
 
@@ -97,6 +99,7 @@ public class TilesActivity extends RootActivity {
                 buttonBorder.setOnClickListener(new View.OnClickListener() { // TODO extract
                     @Override
                     public void onClick(View v) {
+                        dbHandler.addEntry(tile);
                         if (tile.getState() == TileState.NOSTATE) {
                             tile.setState(TileState.PRESSED);
                             buttonPressed.setBackgroundResource(category.getIconPressed());

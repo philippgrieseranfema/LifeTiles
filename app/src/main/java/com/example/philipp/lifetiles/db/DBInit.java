@@ -44,8 +44,6 @@ public class DBInit {
                 dbHandler.addMatch(category, tile);
             }
         }
-        Category category = dbHandler.getCategory(1);
-        System.out.println("ohoho");
     }
 
 }

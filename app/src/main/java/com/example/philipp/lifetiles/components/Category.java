@@ -15,26 +15,26 @@ public class Category {
     private int iconCategory;
     private String name;
     private List<Tile> tiles;
-    private CategoryColor color;
+    private int color;
 
-    public Category(int id, String name, CategoryColor color, List<Tile> tiles) {
+    public Category(int id, String name, int color, List<Tile> tiles) {
         this.id = id;
         this.name = name;
         this.tiles = tiles;
         this.color = color;
-        if (color == CategoryColor.CATEGORY_COLOR_YELLOW) {
+        if (color == 0) {
             this.icon = R.drawable.tile_orange_02;
             this.iconPressed = R.drawable.tile_yellow_pressed;
             this.iconCategory = R.drawable.category_stripe_yellow;
-        } else if (color == CategoryColor.CATEGORY_COLOR_BLUE) {
+        } else if (color == 1) {
             this.icon = R.drawable.tile_blue_02;
             this.iconPressed = R.drawable.tile_blue_pressed;
             this.iconCategory = R.drawable.category_stripe_blue;
-        } else if (color == CategoryColor.CATEGORY_COLOR_GREEN) {
+        } else if (color == 2) {
             this.icon = R.drawable.tile_green_02;
             this.iconPressed = R.drawable.tile_green_pressed;
             this.iconCategory = R.drawable.category_stripe_green;
-        } else if (color == CategoryColor.CATEGORY_COLOR_RED) {
+        } else if (color == 3) {
             this.icon = R.drawable.tile_red_02;
             this.iconPressed = R.drawable.tile_red_pressed;
             this.iconCategory = R.drawable.category_stripe_red;
@@ -57,11 +57,11 @@ public class Category {
         this.tiles = tiles;
     }
 
-    public CategoryColor getColor() {
+    public int getColor() {
         return color;
     }
 
-    public void setColor(CategoryColor color) {
+    public void setColor(int color) {
         this.color = color;
     }
 
