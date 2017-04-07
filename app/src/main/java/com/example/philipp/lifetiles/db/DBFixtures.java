@@ -7,6 +7,7 @@ import com.example.philipp.lifetiles.ListActivity;
 import com.example.philipp.lifetiles.R;
 import com.example.philipp.lifetiles.TilesActivity;
 import com.example.philipp.lifetiles.components.Category;
+import com.example.philipp.lifetiles.components.Entry;
 import com.example.philipp.lifetiles.components.Tile;
 import com.example.philipp.lifetiles.components.TileMenu;
 
@@ -41,6 +42,20 @@ public class DBFixtures {
         categories.add(getCategoryFinance());
         categories.add(getCategoryLifestyle());
         return categories;
+    }
+
+    public static List<Entry> getEntries() {
+        List<Entry> entries = new ArrayList<>();
+//        entries.add(new Entry(1, getAllIconTiles().get(1), "2017-04-06"));
+//        entries.add(new Entry(2, getAllIconTiles().get(1), "2017-04-06"));
+//        entries.add(new Entry(3, getAllIconTiles().get(1), "2017-04-06"));
+//        entries.add(new Entry(4, getAllIconTiles().get(2), "2017-04-06"));
+//        entries.add(new Entry(5, getAllIconTiles().get(2), "2017-04-06"));
+        entries.add(new Entry(6, getAllIconTiles().get(3), "2017-04-06"));
+        entries.add(new Entry(7, getAllIconTiles().get(8), "2017-04-06"));
+        entries.add(new Entry(8, getAllIconTiles().get(18), "2017-04-04"));
+        entries.add(new Entry(9, getAllIconTiles().get(10), "2017-04-05"));
+        return entries;
     }
 
     private static Category getCategorySport() {

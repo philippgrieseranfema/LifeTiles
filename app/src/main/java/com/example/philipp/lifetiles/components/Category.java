@@ -41,6 +41,18 @@ public class Category {
         }
     }
 
+    public Boolean isTileInCategory(Tile tile) {
+        Boolean isTileInCategory = false;
+        for (Tile categoryTile : this.tiles) {
+            if (tile.getId() == categoryTile.getId()) {
+                isTileInCategory = true;
+            }
+        }
+        System.out.println("Is Tile " + tile.getName() + "(" + tile.getId() + ") in Category " +
+                this.name + "(" + this.id + ")? --> " + isTileInCategory);
+        return isTileInCategory;
+    }
+
     public int getIcon() {
         return icon;
     }

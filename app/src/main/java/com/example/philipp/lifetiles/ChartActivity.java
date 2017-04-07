@@ -1,21 +1,43 @@
 package com.example.philipp.lifetiles;
 
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuInflater;
+import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
+import android.widget.TextView;
 
+import com.example.philipp.lifetiles.components.Category;
+import com.example.philipp.lifetiles.components.Entry;
+import com.example.philipp.lifetiles.components.Tile;
+import com.example.philipp.lifetiles.db.DBFixtures;
+import com.example.philipp.lifetiles.db.DBHandler;
 import com.github.mikephil.charting.charts.BarChart;
+import com.github.mikephil.charting.components.Description;
 import com.github.mikephil.charting.data.BarData;
 import com.github.mikephil.charting.data.BarDataSet;
 import com.github.mikephil.charting.data.BarEntry;
+import com.github.mikephil.charting.interfaces.datasets.IBarDataSet;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 
 public class ChartActivity extends RootActivity {
+
+    DBHandler dbHandler = new DBHandler(this);
+    List<Integer> colors = Arrays.asList(
+            new Color().rgb(247, 205, 115), // yellow
+            new Color().rgb(108, 171, 240), // blue
+            new Color().rgb(141, 243, 151), // green
+            new Color().rgb(246, 104, 97)); // red
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,38 +48,12 @@ public class ChartActivity extends RootActivity {
         createMenu(ChartActivity.class);
 
         LinearLayout layout = (LinearLayout) findViewById(R.id.theActivityChart);
-        createHeadline(layout, "Diagram");
+        createHeadline(layout, "Your Activities");
+
+        createButtonTodayWeek(layout);
         createBarChart(layout);
-    }
-
-    private void createBarChart(LinearLayout layout) {
-        BarChart barchart = new BarChart(this);
-
-        ArrayList<BarEntry> barEntries = new ArrayList<>();
-        barEntries.add(new BarEntry(22f,0));
-        barEntries.add(new BarEntry(12f,1));
-        barEntries.add(new BarEntry(33f,2));
-        barEntries.add(new BarEntry(56f,3));
-        barEntries.add(new BarEntry(14f,4));
-        BarDataSet barDataSetNumbers = new BarDataSet(barEntries, "Numbers");
-
-        ArrayList<String> dates = new ArrayList<>();
-        dates.add("aaaa");
-        dates.add("bbbb");
-        dates.add("cccc");
-        dates.add("dddd");
-        dates.add("eeee");
-        BarDataSet barDataSetDates = new BarDataSet(barEntries, "Dates");
-
-        BarData barData = new BarData(barDataSetDates, barDataSetNumbers);
-        barchart.setData(barData);
-        LinearLayout.LayoutParams barChartParams = new LinearLayout.LayoutParams(
-                ViewGroup.LayoutParams.MATCH_PARENT, 400);
-        barchart.setLayoutParams(barChartParams);
-
-        barchart.setTouchEnabled(true);
-
-        layout.addView(barchart);
+        createButtonBottom(layout);
+        createSelectionPreview(layout);
     }
 
     @Override
@@ -67,111 +63,153 @@ public class ChartActivity extends RootActivity {
         return true;
     }
 
-   /*  public Calendar month;
-    public CalendarAdapter adapter;
-    public Handler handler;
-    public ArrayList<String> items; // container to store some random calendar items
-    public Runnable calendarUpdater = new Runnable() {
+    private void createButtonTodayWeek(LinearLayout layout) {
+        LinearLayout linearLayout = new LinearLayout(this);
+        final Button buttonDay = new Button(this);
+        final Button buttonWeek = new Button(this);
 
-        @Override
-        public void run() {
-            items.clear();
-            // format random values. You can implement a dedicated class to provide real values
-            for (int i = 0; i < 31; i++) {
-                Random r = new Random();
+        LinearLayout relativeLayoutDay = new LinearLayout(this);
 
-                if (r.nextInt(10) > 6) {
-                    items.add(Integer.toString(i));
-                }
-            }
-
-            adapter.setItems(items);
-            adapter.notifyDataSetChanged();
-        }
-    }; */
-
-   /* public void onCreate(Bundle savedInstanceState) {
-
-        month = Calendar.getInstance();
-        onNewIntent(getIntent());
-
-        items = new ArrayList<String>();
-        adapter = new CalendarAdapter(this, month);
-
-        GridView gridview = (GridView) findViewById(R.id.gridview);
-        gridview.setAdapter(adapter);
-
-        handler = new Handler();
-        handler.post(calendarUpdater);
-
-        TextView title = (TextView) findViewById(R.id.title);
-        title.setText(android.text.format.DateFormat.format("MMMM yyyy", month));
-
-        TextView previous = (TextView) findViewById(R.id.previous);
-        previous.setOnClickListener(new OnClickListener() {
-
+        buttonDay.setBackgroundResource(R.drawable.button_today_pressed);
+        LinearLayout.LayoutParams paramsButtonDay = new LinearLayout.LayoutParams(
+                100, 50);
+        relativeLayoutDay.addView(buttonDay, paramsButtonDay);
+        buttonDay.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (month.get(Calendar.MONTH) == Calendar.SUNDAY) {
-                    month.set((month.get(Calendar.YEAR) - 1), month.getActualMaximum(Calendar.MONTH), 1);
-                } else {
-                    month.set(Calendar.MONTH, month.get(Calendar.MONTH) - 1);
-                }
-                refreshCalendar();
+                buttonDay.setBackgroundResource(R.drawable.button_today_pressed);
+                buttonWeek.setBackgroundResource(R.drawable.button_week);
             }
         });
+        relativeLayoutDay.setGravity(Gravity.LEFT);
+        linearLayout.addView(relativeLayoutDay);
 
-        TextView next = (TextView) findViewById(R.id.next);
-        next.setOnClickListener(new OnClickListener() {
-
+        RelativeLayout relativeLayoutWeek = new RelativeLayout(this);
+        buttonWeek.setBackgroundResource(R.drawable.button_week);
+        LinearLayout.LayoutParams paramsButtonWeek = new LinearLayout.LayoutParams(
+                100, 50);
+        relativeLayoutWeek.addView(buttonWeek, paramsButtonWeek);
+        buttonWeek.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (month.get(Calendar.MONTH) == Calendar.SUNDAY) {
-                    month.set((month.get(Calendar.YEAR) + 1), month.getActualMinimum(Calendar.MONTH), 1);
-                } else {
-                    month.set(Calendar.MONTH, month.get(Calendar.MONTH) + 1);
-                }
-                refreshCalendar();
-
+                buttonDay.setBackgroundResource(R.drawable.button_today);
+                buttonWeek.setBackgroundResource(R.drawable.button_week_pressed);
             }
         });
+        relativeLayoutWeek.setGravity(Gravity.RIGHT);
+        linearLayout.addView(relativeLayoutWeek);
 
-        gridview.setOnItemClickListener(new OnItemClickListener() {
-            public void onItemClick(AdapterView<?> parent, View v, int position, long id) {
-                // TODO what happens if click on date
-                TextView date = (TextView) v.findViewById(R.id.date);
-                System.out.println(date);
-                System.out.println(date.getText());
-                /*if(date instanceof TextView && !date.getText().equals("")) {
+        linearLayout.setPadding(40, 40, 40, 0);
+        linearLayout.setGravity(Gravity.RIGHT);
 
-                    Intent intent = new Intent();
-                    String day = date.getText().toString();
-                    if(day.length()==1) {
-                        day = "0"+day;
+        layout.addView(linearLayout);
+    }
+
+    private void createButtonBottom(LinearLayout layout) {
+        RelativeLayout relativeLayout2 = new RelativeLayout(this);
+        Button buttonChartBottom = new Button(this);
+        buttonChartBottom.setBackgroundResource(R.drawable.chart_bottom);
+        LinearLayout.LayoutParams paramsButton2 = new LinearLayout.LayoutParams(
+                ViewGroup.LayoutParams.MATCH_PARENT, 6);
+        relativeLayout2.addView(buttonChartBottom, paramsButton2);
+        relativeLayout2.setPadding(20, 0, 20, 20);
+        relativeLayout2.setGravity(Gravity.RIGHT);
+        layout.addView(relativeLayout2);
+    }
+
+    private void createBarChart(LinearLayout layout) {
+        BarChart barchart = new BarChart(this);
+
+        List<IBarDataSet> barDataSets = new ArrayList<>();
+        int i = 0;
+        for (Category category : dbHandler.getCategories()) {
+            ArrayList<BarEntry> barEntries = new ArrayList<>();
+            ArrayList<Integer> alreadyInChart = new ArrayList<>();
+
+            for (Entry entry : dbHandler.getEntriesOfCategory(category.getId())) {
+                int count = dbHandler.getEntryCount(entry.getTile().getId());
+
+                if (!alreadyInChart.contains(entry.getTile().getId())) {
+                    if (0 < count) {
+                        barEntries.add(new BarEntry(i, count));
+                        i++;
                     }
-                    // return chosen date as string format
-                    intent.putExtra("date", android.text.format.DateFormat.format("yyyy-MM", month)+"-"+day);
-                    setResult(RESULT_OK, intent);
-                    finish();
-                }/
-
+                }
+                alreadyInChart.add(entry.getTile().getId());
             }
-        });
+
+            BarDataSet barDataSet = new BarDataSet(barEntries, "data");
+            barDataSet.setColor(colors.get(category.getColor())); // TODO
+            barDataSets.add(barDataSet);
+        }
+
+
+        BarData barData = new BarData(barDataSets);
+        barchart.setData(barData);
+
+        Description d = new Description();// no description
+        d.setText("");
+        barchart.setDescription(d);
+        barchart.setNoDataText("No Data"); // no data text TODO
+        barchart.setNoDataTextColor(Color.WHITE);
+        barchart.animateY(2000); // animate
+        barchart.getAxisLeft().setDrawGridLines(false); // hide background grid
+        barchart.getAxisLeft().setEnabled(false);
+        barchart.getAxisRight().setDrawGridLines(false);
+        barchart.getAxisRight().setEnabled(false);
+        barchart.getXAxis().setDrawGridLines(false);
+        barchart.getXAxis().setEnabled(false);
+        barchart.setMaxVisibleValueCount(0); // hide bar values
+        barchart.getLegend().setEnabled(false); // hide legend
+
+
+        RelativeLayout relativeLayout = new RelativeLayout(this);
+        LinearLayout.LayoutParams barChartParams = new LinearLayout.LayoutParams(
+                ViewGroup.LayoutParams.MATCH_PARENT, 350);
+        barchart.setLayoutParams(barChartParams);
+        barchart.setTouchEnabled(true);
+        relativeLayout.addView(barchart);
+        relativeLayout.setPadding(0, 0, 0, 30 * -1);
+
+        layout.addView(relativeLayout);
+        layout.invalidate();
     }
 
-    public void refreshCalendar() {
-        TextView title = (TextView) findViewById(R.id.title);
+    private void createSelectionPreview(LinearLayout layout) {
+        createHeadline(layout, "Selection Detail");
 
-        adapter.refreshDays();
-        adapter.notifyDataSetChanged();
-        handler.post(calendarUpdater); // generate some random calendar items
+        RelativeLayout relativeLayout = new RelativeLayout(this);
+        relativeLayout.setPadding(30, 30, 0, 30);
 
-        title.setText(android.text.format.DateFormat.format("MMMM yyyy", month));
+
+        Tile newTile = DBFixtures.getNewTileCategory().getTiles().get(0);
+        Button buttonNew = new Button(this);
+        buttonNew.setBackgroundResource(R.drawable.tile_white);
+        LinearLayout.LayoutParams paramsButton = new LinearLayout.LayoutParams(
+                newTile.getWidth(), newTile.getHeight());
+        buttonNew.setPadding(20, 0, 0, 20);
+        relativeLayout.addView(buttonNew, paramsButton);
+
+        RelativeLayout relativeLayoutSave = new RelativeLayout(this);
+        relativeLayoutSave.setPadding(600, 10, 0, 0);
+        Button buttonSave = new Button(this);
+        buttonSave.setBackgroundResource(R.drawable.save_02);
+        LinearLayout.LayoutParams paramsButtonSave = new LinearLayout.LayoutParams(
+                newTile.getWidth(), newTile.getHeight());
+        relativeLayoutSave.addView(buttonSave, paramsButtonSave);
+        relativeLayout.addView(relativeLayoutSave);
+
+
+        TextView textViewName = new TextView(this);
+        textViewName.setText(newTile.getName());
+        textViewName.setPadding(140, 5, 0, 0);
+        relativeLayout.addView(textViewName);
+
+        TextView textViewDescription = new TextView(this);
+        textViewDescription.setText(newTile.getDescription());
+        textViewDescription.setPadding(140, 45, 0, 0);
+        relativeLayout.addView(textViewDescription);
+
+        layout.addView(relativeLayout);
     }
-
-    public void onNewIntent(Intent intent) {
-        // TODO rem intent & get real date
-        month.set(2017, 2, 3);
-    }
-*/
 }

@@ -8,6 +8,7 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
 import com.example.philipp.lifetiles.components.Category;
+import com.example.philipp.lifetiles.components.Entry;
 import com.example.philipp.lifetiles.components.Tile;
 
 import java.text.SimpleDateFormat;
@@ -116,14 +117,24 @@ public class DBHandler extends SQLiteOpenHelper {
         System.out.println("Added match: " + category.getId() + " - " + tile.getId() + " - " + tile.getName());
     }
 
-    public void addEntry(Tile tile) {
+    public void addEntry(Entry entry) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues values = new ContentValues();
+        values.put(KEY_ENTRIES_TILE_ID, entry.getTile().getId());
+        values.put(KEY_ENTRIES_DATE, entry.getDate());
+        db.insert(TABLE_ENTRIES, null, values);
+        db.close();
+        System.out.println("Added entry: " + entry);
+    }
+
+    public void addEntryToday(Tile tile) {
         // current date
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
         String date = sdf.format(new Date());
 
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues values = new ContentValues();
-        values.put(KEY_MATCH_TILE_ID, tile.getId());
+        values.put(KEY_ENTRIES_TILE_ID, tile.getId());
         values.put(KEY_ENTRIES_DATE, date);
         db.insert(TABLE_ENTRIES, null, values);
         db.close();
@@ -140,7 +151,7 @@ public class DBHandler extends SQLiteOpenHelper {
         }
         Tile tile = new Tile(Integer.parseInt(cursor.getString(0)),
                 Integer.parseInt(cursor.getString(3)), cursor.getString(1), cursor.getString(2), 100, 100);
-
+        db.close();
         return tile;
     }
 
@@ -173,8 +184,35 @@ public class DBHandler extends SQLiteOpenHelper {
         for (int tileId : tileIds) {
             tiles.add(getTile(tileId));
         }
-
+        db.close();
         return new Category(cursor.getInt(0), cursor.getString(1), cursor.getInt(5), tiles);
+    }
+
+    public Entry getEntry(int id) {
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor = db.query(TABLE_ENTRIES, new String[]{KEY_ID,
+                        KEY_ENTRIES_TILE_ID, KEY_ENTRIES_DATE}, KEY_ID + "=?",
+                new String[]{String.valueOf(id)}, null, null, null, null);
+        if (cursor != null) {
+            cursor.moveToFirst();
+        }
+        Entry entry = new Entry(cursor.getInt(0),
+                getTile(cursor.getInt(1)), cursor.getString(2));
+
+        // System.out.println("Get Entry: " + entry);
+        db.close();
+        return entry;
+    }
+
+    public int getEntryCount(int id) {
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor = db.query(TABLE_ENTRIES, new String[]{KEY_ID,
+                        KEY_ENTRIES_TILE_ID, KEY_ENTRIES_DATE}, KEY_ENTRIES_TILE_ID + "=?",
+                new String[]{String.valueOf(id)}, null, null, null, null);
+
+        int count = cursor.getCount();
+        db.close();
+        return count;
     }
 
     public List<Category> getCategories() {
@@ -185,11 +223,47 @@ public class DBHandler extends SQLiteOpenHelper {
         for (int i = 1; i <= numRows; i++) {
             categories.add(getCategory(i));
         }
-
+        db.close();
         return categories;
     }
 
-    public int getTileStat() {
-        return -1;
+    public List<Entry> getEntries() {
+        SQLiteDatabase db = this.getReadableDatabase();
+        long numRows = DatabaseUtils.queryNumEntries(db, TABLE_ENTRIES);
+
+        List<Entry> entries = new ArrayList<>();
+        for (int i = 1; i <= numRows; i++) {
+            entries.add(getEntry(i));
+        }
+        db.close();
+        return entries;
+    }
+
+    public List<Entry> getEntriesOfCategory(int id) { // TODO not cost efficent
+        List<Entry> entries = new ArrayList<>();
+        for (Tile categoryTile : getCategory(id).getTiles()) {
+            for (Entry entry : getEntries()) {
+                if (entry.getTile().getId() == categoryTile.getId()) {
+                    entries.add(entry);
+                }
+            }
+        }
+        return entries;
+    }
+
+    public void removeEntriesToday(Tile tile) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+        String date = sdf.format(new Date());
+        String tileId = String.valueOf(tile.getId());
+
+        try {
+            db.delete(TABLE_ENTRIES, KEY_ENTRIES_TILE_ID + " = ? AND " + KEY_ENTRIES_DATE + " = ?",
+                    new String[]{tileId, date});
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            db.close();
+        }
     }
 }

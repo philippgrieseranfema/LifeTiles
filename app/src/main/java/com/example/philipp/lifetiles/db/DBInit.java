@@ -3,6 +3,7 @@ package com.example.philipp.lifetiles.db;
 import android.content.Context;
 
 import com.example.philipp.lifetiles.components.Category;
+import com.example.philipp.lifetiles.components.Entry;
 import com.example.philipp.lifetiles.components.Tile;
 
 import java.io.File;
@@ -44,6 +45,9 @@ public class DBInit {
                 dbHandler.addMatch(category, tile);
             }
         }
+        // add entries
+        for (Entry entry : DBFixtures.getEntries()) {
+            dbHandler.addEntry(entry);
+        }
     }
-
 }

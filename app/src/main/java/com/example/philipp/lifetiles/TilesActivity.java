@@ -99,18 +99,21 @@ public class TilesActivity extends RootActivity {
                 buttonBorder.setOnClickListener(new View.OnClickListener() { // TODO extract
                     @Override
                     public void onClick(View v) {
-                        dbHandler.addEntry(tile);
                         if (tile.getState() == TileState.NOSTATE) {
+                            dbHandler.addEntryToday(tile);
                             tile.setState(TileState.PRESSED);
                             buttonPressed.setBackgroundResource(category.getIconPressed());
                             buttonSticks.setBackgroundResource(R.drawable.tile_pressed_stick);
                         } else if (tile.getState() == TileState.PRESSED) {
+                            dbHandler.addEntryToday(tile);
                             tile.setState(TileState.PRESSED2);
                             buttonSticks.setBackgroundResource(R.drawable.tile_pressed_stick2);
                         } else if (tile.getState() == TileState.PRESSED2) {
+                            dbHandler.addEntryToday(tile);
                             tile.setState(TileState.PRESSED3);
                             buttonSticks.setBackgroundResource(R.drawable.tile_pressed_stick3);
                         } else if (tile.getState() == TileState.PRESSED3) {
+                            dbHandler.removeEntriesToday(tile);
                             tile.setState(TileState.NOSTATE);
                             buttonPressed.setBackgroundResource(R.drawable.transparent);
                             buttonSticks.setBackgroundResource(R.drawable.transparent);
