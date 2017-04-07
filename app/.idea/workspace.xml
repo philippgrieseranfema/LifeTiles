@@ -9,19 +9,8 @@
     <option name="TOOL_WINDOW_CONFIGURED_FILTER" value="Show only selected application" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="37b6ae20-317b-49e7-9166-5838db8fbc18" name="Default" comment="load tiles for activities from db">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/main/java/com/example/philipp/lifetiles/CalendarAdapter.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/main/res/drawable/icon_shopping_pressed_01.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/main/res/drawable/item_background.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/main/res/drawable/item_background_focused.png" afterPath="" />
+    <list default="true" id="37b6ae20-317b-49e7-9166-5838db8fbc18" name="Default" comment="chart activity improvements &amp; day week button">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/example/philipp/lifetiles/ChartActivity.java" afterPath="$PROJECT_DIR$/src/main/java/com/example/philipp/lifetiles/ChartActivity.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/example/philipp/lifetiles/TilesActivity.java" afterPath="$PROJECT_DIR$/src/main/java/com/example/philipp/lifetiles/TilesActivity.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/example/philipp/lifetiles/components/Category.java" afterPath="$PROJECT_DIR$/src/main/java/com/example/philipp/lifetiles/components/Category.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/example/philipp/lifetiles/db/DBFixtures.java" afterPath="$PROJECT_DIR$/src/main/java/com/example/philipp/lifetiles/db/DBFixtures.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/example/philipp/lifetiles/db/DBHandler.java" afterPath="$PROJECT_DIR$/src/main/java/com/example/philipp/lifetiles/db/DBHandler.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/example/philipp/lifetiles/db/DBInit.java" afterPath="$PROJECT_DIR$/src/main/java/com/example/philipp/lifetiles/db/DBInit.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/res/drawable/list_item_background.xml" afterPath="$PROJECT_DIR$/src/main/res/drawable/list_item_background.xml" />
     </list>
     <ignored path="app.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -2531,7 +2520,14 @@
       <option name="project" value="LOCAL" />
       <updated>1491472222863</updated>
     </task>
-    <option name="localTasksCounter" value="18" />
+    <task id="LOCAL-00018" summary="chart activity improvements &amp; day week button">
+      <created>1491575265492</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1491575265492</updated>
+    </task>
+    <option name="localTasksCounter" value="19" />
     <servers />
   </component>
   <component name="TodoView">
@@ -2610,7 +2606,8 @@
     <MESSAGE value="db init" />
     <MESSAGE value="db getCategory fix" />
     <MESSAGE value="load tiles for activities from db" />
-    <option name="LAST_COMMIT_MESSAGE" value="load tiles for activities from db" />
+    <MESSAGE value="chart activity improvements &amp; day week button" />
+    <option name="LAST_COMMIT_MESSAGE" value="chart activity improvements &amp; day week button" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REARRANGE_BEFORE_PROJECT_COMMIT" value="true" />
