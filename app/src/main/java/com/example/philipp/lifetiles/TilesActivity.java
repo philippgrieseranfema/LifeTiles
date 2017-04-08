@@ -93,7 +93,6 @@ public class TilesActivity extends RootActivity {
                         tile.getWidth(), tile.getHeight());
                 frameLayout.addView(buttonTile, paramsButton);
 
-
                 // border
                 Button buttonBorder = new Button(this);
                 buttonBorder.setOnClickListener(new View.OnClickListener() { // TODO extract
@@ -125,6 +124,23 @@ public class TilesActivity extends RootActivity {
                         tile.getWidth(), tile.getHeight());
                 buttonBorder.setLayoutParams(paramsBorder);
                 frameLayout.addView(buttonBorder);
+
+
+                // load pressed state
+                int count = dbHandler.getEntryCount(tile.getId());
+                if (count == 0) {
+                    buttonPressed.setBackgroundResource(R.drawable.transparent);
+                    buttonSticks.setBackgroundResource(R.drawable.transparent);
+                } else if (count == 1) {
+                    buttonPressed.setBackgroundResource(category.getIconPressed());
+                    buttonSticks.setBackgroundResource(R.drawable.tile_pressed_stick);
+                } else if (count == 2) {
+                    buttonPressed.setBackgroundResource(category.getIconPressed());
+                    buttonSticks.setBackgroundResource(R.drawable.tile_pressed_stick2);
+                } else if (count == 3) {
+                    buttonPressed.setBackgroundResource(category.getIconPressed());
+                    buttonSticks.setBackgroundResource(R.drawable.tile_pressed_stick3);
+                }
             }
         }
     }

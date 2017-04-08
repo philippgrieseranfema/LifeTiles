@@ -33,6 +33,7 @@ public class DBInit {
     private void initTiles() {
         // add tiles
         for (Tile tile : DBFixtures.getAllIconTiles()) {
+            System.out.println("--- " + tile.getId());
             dbHandler.addTile(tile);
         }
         // add categories

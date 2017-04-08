@@ -179,12 +179,13 @@ public class DBHandler extends SQLiteOpenHelper {
                 break;
             }
         }
+        db.close();
 
         List<Tile> tiles = new ArrayList<>();
         for (int tileId : tileIds) {
+            System.out.println(tileId);
             tiles.add(getTile(tileId));
         }
-        db.close();
         return new Category(cursor.getInt(0), cursor.getString(1), cursor.getInt(5), tiles);
     }
 
@@ -193,14 +194,13 @@ public class DBHandler extends SQLiteOpenHelper {
         Cursor cursor = db.query(TABLE_ENTRIES, new String[]{KEY_ID,
                         KEY_ENTRIES_TILE_ID, KEY_ENTRIES_DATE}, KEY_ID + "=?",
                 new String[]{String.valueOf(id)}, null, null, null, null);
+        db.close();
         if (cursor != null) {
             cursor.moveToFirst();
         }
         Entry entry = new Entry(cursor.getInt(0),
                 getTile(cursor.getInt(1)), cursor.getString(2));
 
-        // System.out.println("Get Entry: " + entry);
-        db.close();
         return entry;
     }
 
@@ -218,28 +218,48 @@ public class DBHandler extends SQLiteOpenHelper {
     public List<Category> getCategories() {
         SQLiteDatabase db = this.getReadableDatabase();
         long numRows = DatabaseUtils.queryNumEntries(db, TABLE_CATEGORIES);
+        db.close();
 
         List<Category> categories = new ArrayList<>();
         for (int i = 1; i <= numRows; i++) {
             categories.add(getCategory(i));
         }
-        db.close();
+
         return categories;
     }
 
     public List<Entry> getEntries() {
         SQLiteDatabase db = this.getReadableDatabase();
-        long numRows = DatabaseUtils.queryNumEntries(db, TABLE_ENTRIES);
+        Cursor cursor = db.query(TABLE_ENTRIES, new String[]{KEY_ID,
+                        KEY_ENTRIES_TILE_ID, KEY_ENTRIES_DATE}, null,
+                new String[]{}, null, null, null, null);
 
+        int i = 0;
         List<Entry> entries = new ArrayList<>();
-        for (int i = 1; i <= numRows; i++) {
-            entries.add(getEntry(i));
+        List<Integer> entryIds = new ArrayList<>();
+        List<Integer> tileIds = new ArrayList<>();
+        List<String> dates = new ArrayList<>();
+        while (cursor.moveToNext()) {
+            entryIds.add(cursor.getInt(0));
+            tileIds.add(cursor.getInt(1));
+            dates.add(cursor.getString(2));
+            i++;
+            if (cursor.getCount() <= i) {
+                break;
+            }
         }
         db.close();
+
+        int j = 0;
+        for (int entryId : entryIds) {
+            entries.add(new Entry(entryId, getTile(tileIds.get(j)), dates.get(j)));
+            j++;
+        }
+
         return entries;
     }
 
-    public List<Entry> getEntriesOfCategory(int id) { // TODO not cost efficent
+    public List<Entry> getEntriesOfCategory(int id) { // TODO not cost efficient
         List<Entry> entries = new ArrayList<>();
         for (Tile categoryTile : getCategory(id).getTiles()) {
             for (Entry entry : getEntries()) {
