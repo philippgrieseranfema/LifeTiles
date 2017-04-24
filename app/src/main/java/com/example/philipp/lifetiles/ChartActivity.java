@@ -150,7 +150,6 @@ public class ChartActivity extends RootActivity {
         Description d = new Description();// no description
         d.setText("");
         barchart.setDescription(d);
-        barchart.setNoDataText("No Data"); // no data text TODO
         barchart.setNoDataTextColor(Color.WHITE);
         barchart.animateY(2000); // animate
         barchart.getAxisLeft().setDrawGridLines(false); // hide background grid
@@ -159,6 +158,9 @@ public class ChartActivity extends RootActivity {
         barchart.getAxisRight().setEnabled(false);
         barchart.getXAxis().setDrawGridLines(false);
         barchart.getXAxis().setEnabled(false);
+        barchart.getAxisLeft().setStartAtZero(true);
+        barchart.getAxisLeft().setAxisMaximum(3);
+        barchart.getAxisLeft().setAxisMinimum(0);
         barchart.setMaxVisibleValueCount(0); // hide bar values
         barchart.getLegend().setEnabled(false); // hide legend
 

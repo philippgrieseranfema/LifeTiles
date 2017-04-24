@@ -1,6 +1,9 @@
 package com.example.philipp.lifetiles;
 
+import android.content.Context;
 import android.os.Bundle;
+import android.os.Vibrator;
+import android.support.design.widget.Snackbar;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -10,6 +13,7 @@ import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.HorizontalScrollView;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import com.example.philipp.lifetiles.components.Category;
 import com.example.philipp.lifetiles.components.Tile;
@@ -27,7 +31,32 @@ public class TilesActivity extends RootActivity {
         Toolbar myToolbar = (Toolbar) findViewById(R.id.toolbarTilesActivity);
         this.setSupportActionBar(myToolbar);
         createMenu(TilesActivity.class);
-        createCategories();
+
+        final LinearLayout layout = (LinearLayout) findViewById(R.id.theActivityTiles);
+
+        createCategories(layout);
+        createDiary(layout);
+    }
+
+    private void createDiary(LinearLayout layout) {
+        createHeadline(layout, "Diary");
+
+        FrameLayout frameLayout = new FrameLayout(this);
+        frameLayout.setPadding(40, 40, 40, 40);
+        TextView textView = new TextView(this);
+        textView.setText("How was your day?");
+        frameLayout.addView(textView);
+        layout.addView(frameLayout);
+
+        FrameLayout frameLayout2 = new FrameLayout(this);
+        frameLayout2.setPadding(40, 0, 40, 40);
+        Button textArea = new Button(this);
+        textArea.setBackgroundResource(R.drawable.diary_field);
+        LinearLayout.LayoutParams paramsDiary = new LinearLayout.LayoutParams(
+                ViewGroup.LayoutParams.MATCH_PARENT, 300); // image scale
+        textArea.setLayoutParams(paramsDiary);
+        frameLayout2.addView(textArea);
+        layout.addView(frameLayout2);
     }
 
     @Override
@@ -37,8 +66,9 @@ public class TilesActivity extends RootActivity {
         return true;
     }
 
-    private void createCategories() {
-        LinearLayout layout = (LinearLayout) findViewById(R.id.theActivityTiles);
+    private void createCategories(LinearLayout layout) {
+
+        final Vibrator vibrator = (Vibrator) this.getSystemService(VIBRATOR_SERVICE);
 
         for (final Category category : dbHandler.getCategories()) {
 
@@ -53,7 +83,7 @@ public class TilesActivity extends RootActivity {
             layout.addView(buttonCategoryStripe);
 
             // horizontal scroll layout
-            HorizontalScrollView layoutCategoryScroll = new HorizontalScrollView(this);
+            final HorizontalScrollView layoutCategoryScroll = new HorizontalScrollView(this);
             layoutCategoryScroll.setPadding(0, 15, 0, 0);
             layout.addView(layoutCategoryScroll);
 
@@ -99,19 +129,27 @@ public class TilesActivity extends RootActivity {
                     @Override
                     public void onClick(View v) {
                         if (tile.getState() == TileState.NOSTATE) {
+                            vibrator.vibrate(10);
+                            Snackbar.make(layoutCategoryScroll, "Saved Entry: " + tile.getName() + " (1/3)", 2000);
                             dbHandler.addEntryToday(tile);
                             tile.setState(TileState.PRESSED);
                             buttonPressed.setBackgroundResource(category.getIconPressed());
                             buttonSticks.setBackgroundResource(R.drawable.tile_pressed_stick);
                         } else if (tile.getState() == TileState.PRESSED) {
+                            vibrator.vibrate(10);
+                            Snackbar.make(layoutCategoryScroll, "Saved Entry: " + tile.getName() + " (2/3)", 2000);
                             dbHandler.addEntryToday(tile);
                             tile.setState(TileState.PRESSED2);
                             buttonSticks.setBackgroundResource(R.drawable.tile_pressed_stick2);
                         } else if (tile.getState() == TileState.PRESSED2) {
+                            vibrator.vibrate(10);
+                            Snackbar.make(layoutCategoryScroll, "Saved Entry: " + tile.getName() + " (3/3)", 2000);
                             dbHandler.addEntryToday(tile);
                             tile.setState(TileState.PRESSED3);
                             buttonSticks.setBackgroundResource(R.drawable.tile_pressed_stick3);
                         } else if (tile.getState() == TileState.PRESSED3) {
+                            vibrator.vibrate(10);
+                            Snackbar.make(layoutCategoryScroll, "Saved Entry: " + tile.getName() + " (0/3)", 2000);
                             dbHandler.removeEntriesToday(tile);
                             tile.setState(TileState.NOSTATE);
                             buttonPressed.setBackgroundResource(R.drawable.transparent);
